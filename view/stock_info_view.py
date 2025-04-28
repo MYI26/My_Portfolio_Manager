@@ -1,5 +1,5 @@
 import os
-import requests  # pour faire l'appel API
+import requests
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import QTimer
@@ -11,7 +11,7 @@ class StockInfoView(QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
-        # נתיב יחסי ללוגו
+        # Chargement du logo
         logo_path = os.path.join("resources", "logos", "logo.png")
         if os.path.exists(logo_path):
             pixmap = QPixmap(logo_path)
@@ -20,8 +20,10 @@ class StockInfoView(QWidget):
         else:
             print(f"❌ Logo not found at: {logo_path}")
 
-        # Configurer l'appel périodique à l'API
-        self.api_url = "https://localhost:7105/api/Data_Market_/price/AAPL"
+        # ➜ Nouvelle URL de la Gateway
+        self.api_url = "https://localhost:7229//api/market/price/AAPL"  # Port de la Gateway
+
+        # Timer pour appel périodique
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_stock_info)
         self.timer.start(5000)  # toutes les 5 secondes
@@ -31,12 +33,15 @@ class StockInfoView(QWidget):
 
     def update_stock_info(self):
         try:
-            response = requests.get(self.api_url, verify=False)  # Assurez-vous que l'URL est correcte
+            response = requests.get(self.api_url, verify=False)
             print(f"Status Code: {response.status_code}")
-            print(f"Response Text: {response.text}")  # ➜ Voir le contenu même s'il y a une erreur
+            print(f"Response Text: {response.text}")
+
             if response.status_code == 200:
                 data = response.json()
-                print(f"Data: {data}")  # ➜ voir la vraie structure des données
+                print(f"Data: {data}")
+
+                # Mise à jour de l'interface avec les données reçues
                 self.ui.labelSymbol.setText(data.get("ticker", "N/A"))
                 self.ui.labelCompany.setText(data.get("name", "Unknown"))
                 self.ui.labelCurntPriceValue.setText(f"{data.get('price', 'N/A')} USD")
@@ -44,6 +49,6 @@ class StockInfoView(QWidget):
                 self.ui.ClosePriceValue.setText(f"{data.get('close', 'N/A')} USD")
                 self.ui.labelChange.setText(f"{data.get('pourcentage', 'N/A')} %")
             else:
-                print(f"Erreur API: {response.status_code}")
+                print(f"Erreur API Gateway: {response.status_code}")
         except Exception as e:
-            print(f"Erreur de connexion à l'API: {e}")
+            print(f"Erreur de connexion à la Gateway: {e}")
