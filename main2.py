@@ -1,4 +1,4 @@
-# 📄 main.py
+# 📄 main2.py
 from PySide6.QtWidgets import QApplication
 from view.stock_info_view import StockInfoView
 import sys
