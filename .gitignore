@@ -1,22 +1,13 @@
 # Ignorer les environnements virtuels
 venv/
 .env/
-ENV/
-env/
 __pycache__/
 *.py[cod]
 
-# Fichiers de log
-*.log
+# VSCode
+.vscode/
 
-# Dossiers temporaires / builds
+# Dossiers temporaires
 build/
 dist/
 *.egg-info/
-
-# Paramètres spécifiques à VSCode
-.vscode/
-
-# Autres fichiers inutiles
-.DS_Store
-Thumbs.db
