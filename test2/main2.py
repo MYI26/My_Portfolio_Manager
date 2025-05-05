@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtWidgets import QApplication, QStackedWidget
-from login_view import LoginView
-from signup_view import SignUpView
+from test2.login_view import LoginView
+from test2.signup_view import SignUpView
 
 class AuthApp(QStackedWidget):
     def __init__(self):

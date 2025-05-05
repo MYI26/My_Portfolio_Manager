@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
-from auth_service import AuthService
+from test2.auth_service import AuthService
 
-class LoginView(QWidget):
+class SignUpView(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -17,29 +17,29 @@ class LoginView(QWidget):
 
         self.status_label = QLabel("")
 
-        login_button = QPushButton("Se connecter")
-        login_button.clicked.connect(self.login)
+        signup_button = QPushButton("Créer le compte")
+        signup_button.clicked.connect(self.signup)
 
-        signup_button = QPushButton("Créer un compte")
-        signup_button.clicked.connect(self.goto_signup)
+        back_button = QPushButton("Retour à la connexion")
+        back_button.clicked.connect(self.goto_login)
 
-        layout.addWidget(QLabel("Connexion"))
+        layout.addWidget(QLabel("Créer un compte"))
         layout.addWidget(self.email_input)
         layout.addWidget(self.password_input)
-        layout.addWidget(login_button)
         layout.addWidget(signup_button)
+        layout.addWidget(back_button)
         layout.addWidget(self.status_label)
 
         self.setLayout(layout)
 
-    def login(self):
+    def signup(self):
         email = self.email_input.text()
         password = self.password_input.text()
-        token = self.auth_service.login(email, password)
-        if token:
-            self.status_label.setText("Connexion réussie ✅")
+        success = self.auth_service.signup(email, password)
+        if success:
+            self.status_label.setText("Compte créé ✅")
         else:
-            self.status_label.setText("Erreur de connexion ❌")
+            self.status_label.setText("Erreur lors de la création ❌")
 
-    def goto_signup(self):
-        self.parent.setCurrentWidget(self.parent.signup_view)
+    def goto_login(self):
+        self.parent.setCurrentWidget(self.parent.login_view)

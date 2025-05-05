@@ -11,7 +11,7 @@ class TransactionClient(QWidget):
         super().__init__()
         self.setWindowTitle("Client - Transactions Server")
         self.setGeometry(100, 100, 550, 450)
-        self.api_base = "https://localhost:7207/api/Transactions"
+        self.api_base = "https://localhost:7229/api/transaction"
 
         # ✅ Identifiant utilisateur (statique ou récupéré dynamiquement)
         self.USER_ID = "user123"  # À remplacer par ton vrai ID
