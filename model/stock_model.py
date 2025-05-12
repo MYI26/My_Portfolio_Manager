@@ -6,12 +6,13 @@ class StockModel:
         self.stock_price = 80.25  # שווי מניה סטטי לדוגמה
         self.investment_amount = 0.0  # כמות הכסף שהוזנה
 
-    def fetch_stock_data(self):
+    def fetch_stock_data(self, symbol):
         """
         שולח בקשה לשרת ומחזיר נתוני מניה בפורמט JSON.
         """
         try:
-            response = requests.get(self.api_url, verify=False)
+            url = f"{self.api_url}/price/{symbol}"  # מוסיף את הסימבול לכתובת ה-URL
+            response = requests.get(url, verify=False)
             response.raise_for_status()
             return response.json()  # מחזיר את הנתונים בפורמט JSON
         except requests.RequestException as e:
