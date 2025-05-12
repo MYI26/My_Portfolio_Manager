@@ -3,12 +3,14 @@
 import os
 from PySide6.QtWidgets import QWidget, QScrollArea, QBoxLayout
 from PySide6.QtGui import QPixmap
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from view.ui_stock_info import Ui_Form
 from view.stock_chart_view import StockChartView
 
 
 class StockInfoView(QWidget):
+    buy_clicked = Signal()  # סיגנל ללחיצה על כפתור ה-Buy
+
     def __init__(self, presenter):
         super().__init__()
         self.presenter = presenter
@@ -39,6 +41,9 @@ class StockInfoView(QWidget):
 
         self.ui.frameChart.layout().addWidget(scroll)
 
+        # חיבור כפתור ה-Buy לסיגנל
+        self.ui.btnBuy.clicked.connect(self.on_buy_clicked)
+
     def update_stock_info(self, stock_data):
         """
         מעדכן את התצוגה עם נתוני המניה שהתקבלו.
@@ -55,3 +60,10 @@ class StockInfoView(QWidget):
         מחזיר את ה-StockChartView.
         """
         return self.chart_view
+
+    def on_buy_clicked(self):
+        """
+        משדר סיגנל כאשר לוחצים על כפתור ה-Buy.
+        """
+        print("[StockInfoView] Buy button clicked")  # בדיקה
+        self.buy_clicked.emit()
