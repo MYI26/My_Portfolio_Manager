@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'stock_buy.ui'
+## Form generated from reading UI file 'stock_sale.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.3
 ##
@@ -407,29 +407,29 @@ class Ui_frame_root(object):
         self.frame_action_buttn.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_18 = QHBoxLayout(self.frame_action_buttn)
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.button_bay = QPushButton(self.frame_action_buttn)
-        self.button_bay.setObjectName(u"button_bay")
+        self.button_sale = QPushButton(self.frame_action_buttn)
+        self.button_sale.setObjectName(u"button_sale")
         sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.button_bay.sizePolicy().hasHeightForWidth())
-        self.button_bay.setSizePolicy(sizePolicy2)
-        self.button_bay.setMinimumSize(QSize(150, 35))
+        sizePolicy2.setHeightForWidth(self.button_sale.sizePolicy().hasHeightForWidth())
+        self.button_sale.setSizePolicy(sizePolicy2)
+        self.button_sale.setMinimumSize(QSize(150, 35))
         font3 = QFont()
         font3.setPointSize(11)
         font3.setBold(False)
-        self.button_bay.setFont(font3)
-        self.button_bay.setStyleSheet(u"border: 2px solid #274b6f;\n"
+        self.button_sale.setFont(font3)
+        self.button_sale.setStyleSheet(u"border: 2px solid #274b6f;\n"
 "border-radius: 5px;\n"
 "padding: 5px 10px;\n"
-"background-color: #52b74d;\n"
+"background-color: #e43c4c;\n"
 "color: rgb(255, 255, 255);\n"
 "")
-        self.button_bay.setAutoRepeatDelay(5)
-        self.button_bay.setAutoRepeatInterval(5)
-        self.button_bay.setAutoDefault(False)
+        self.button_sale.setAutoRepeatDelay(5)
+        self.button_sale.setAutoRepeatInterval(5)
+        self.button_sale.setAutoDefault(False)
 
-        self.horizontalLayout_18.addWidget(self.button_bay)
+        self.horizontalLayout_18.addWidget(self.button_sale)
 
 
         self.verticalLayout_2.addWidget(self.frame_action_buttn, 0, Qt.AlignHCenter|Qt.AlignVCenter)
@@ -437,7 +437,7 @@ class Ui_frame_root(object):
 
         self.retranslateUi(frame_root)
 
-        self.button_bay.setDefault(False)
+        self.button_sale.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(frame_root)
@@ -458,6 +458,6 @@ class Ui_frame_root(object):
         self.label_3.setText(QCoreApplication.translate("frame_root", u"Total amount:", None))
         self.label_8.setText(QCoreApplication.translate("frame_root", u"5.5$", None))
         self.label_9.setText(QCoreApplication.translate("frame_root", u"Service price", None))
-        self.button_bay.setText(QCoreApplication.translate("frame_root", u"Bay Now", None))
+        self.button_sale.setText(QCoreApplication.translate("frame_root", u"Sale Now", None))
     # retranslateUi
 

@@ -772,7 +772,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_18">
       <item>
-       <widget class="QPushButton" name="button_bay">
+       <widget class="QPushButton" name="button_sale">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -795,12 +795,12 @@ color: rgb(255, 255, 255);</string>
          <string notr="true">border: 2px solid #274b6f;
 border-radius: 5px;
 padding: 5px 10px;
-background-color: #52b74d;
+background-color: #e43c4c;
 color: rgb(255, 255, 255);
 </string>
         </property>
         <property name="text">
-         <string>Bay Now</string>
+         <string>Sale Now</string>
         </property>
         <property name="autoRepeatDelay">
          <number>5</number>

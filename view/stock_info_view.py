@@ -10,6 +10,7 @@ from view.stock_chart_view import StockChartView
 
 class StockInfoView(QWidget):
     buy_clicked = Signal()  # סיגנל ללחיצה על כפתור ה-Buy
+    sale_clicked = Signal()  # סיגנל ללחיצה על כפתור ה-Sale
 
     def __init__(self, presenter):
         super().__init__()
@@ -44,6 +45,10 @@ class StockInfoView(QWidget):
         # חיבור כפתור ה-Buy לסיגנל
         self.ui.btnBuy.clicked.connect(self.on_buy_clicked)
 
+         # חיבור כפתור ה-Sale לסיגנל
+        self.ui.btnSale.clicked.connect(self.on_sale_clicked)
+
+
     def update_stock_info(self, stock_data):
         """
         מעדכן את התצוגה עם נתוני המניה שהתקבלו.
@@ -67,3 +72,10 @@ class StockInfoView(QWidget):
         """
         print("[StockInfoView] Buy button clicked")  # בדיקה
         self.buy_clicked.emit()
+
+    def on_sale_clicked(self):
+        """
+        משדר סיגנל כאשר לוחצים על כפתור ה-Sale.
+        """
+        print("[StockInfoView] Sale button clicked")  # בדיקה
+        self.sale_clicked.emit()

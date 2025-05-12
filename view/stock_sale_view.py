@@ -1,8 +1,8 @@
 from PySide6.QtWidgets import QFrame, QWidget, QLineEdit
 from PySide6.QtCore import Qt, Signal  # ייבוא Qt עבור LayoutDirection ו-Signal
-from view.ui_stock_buy import Ui_frame_root
+from view.ui_stock_sale import Ui_frame_root
 
-class StockBuyView(QFrame):  # ירושה מ-QFrame
+class StockSaleView(QFrame):  # ירושה מ-QFrame
     return_to_chart = Signal()  # סיגנל לחזרה לגרף
     text_changed_frame_money_amount = Signal(str)  # סיגנל עבור frame_money_amount
 
@@ -16,8 +16,8 @@ class StockBuyView(QFrame):  # ירושה מ-QFrame
         self.ui.frame_header.setLayoutDirection(Qt.RightToLeft)
         self.ui.frame_action_buttn.setLayoutDirection(Qt.RightToLeft)
 
-        # חיבור כפתור ה-Buy לאירוע
-        self.ui.button_bay.clicked.connect(self.on_confirm_clicked)
+        # חיבור כפתור ה-sale לאירוע
+        self.ui.button_sale.clicked.connect(self.on_confirm_clicked)
 
         # חיבור commandLinkButton לסיגנל
         self.ui.commandLinkButton.clicked.connect(self.on_return_to_chart_clicked)
@@ -31,22 +31,22 @@ class StockBuyView(QFrame):  # ירושה מ-QFrame
 
     def on_confirm_clicked(self):
         """
-        מטפל בלחיצה על כפתור ה-Buy.
+        מטפל בלחיצה על כפתור ה-sale.
         """
-        print("[StockBuyView] Buy button clicked")  # בדיקה
+        print("[StocksaleView] sale button clicked")  # בדיקה
 
     def on_return_to_chart_clicked(self):
         """
         משדר סיגנל לחזרה לגרף.
         """
-        print("[StockBuyView] Return to chart clicked")  # בדיקה
+        print("[StocksaleView] Return to chart clicked")  # בדיקה
         self.return_to_chart.emit()
 
     def on_text_changed_frame_money_amount(self, text):
         """
         משדר את הטקסט שהוזן ב-frame_money_amount ל-Presenter.
         """
-        print(f"[StockBuyView] Text changed in frame_money_amount: {text}")  # בדיקה
+        print(f"[StocksaleView] Text changed in frame_money_amount: {text}")  # בדיקה
         self.text_changed_frame_money_amount.emit(text)
 
     def update_label_money(self, text):
