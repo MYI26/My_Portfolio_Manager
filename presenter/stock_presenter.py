@@ -10,7 +10,7 @@ class StockPresenter:
         self.view = StockInfoView(self)
 
         # יצירת ה-StockChartPresenter
-        self.chart_presenter = StockChartPresenter(self.view.get_chart_view())
+        self.chart_presenter = StockChartPresenter(self.view.get_chart_view(), api_url)
 
         # חיבור הסיגנל של כפתור ה-Buy
         self.view.buy_clicked.connect(self.on_buy_clicked)
@@ -18,23 +18,25 @@ class StockPresenter:
         # טיימר לעדכון מחירים מהשרת
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_stock_info)
-        self.timer.start(5000)  # כל 5 שניות
+        self.timer.start(60000)  # כל 5 שניות
 
         # קריאה ראשונית
         self.update_stock_info()
 
-    def update_stock_info(self):
+    def update_stock_info(self, symbol="AAPL"):
         """
         טוען נתוני מניה מה-Model ומעדכן את ה-View.
         """
-        stock_data = self.model.fetch_stock_data()
+        stock_data = self.model.fetch_stock_data(symbol)
         if stock_data:
             self.view.update_stock_info(stock_data)
         else:
-            print("Failed to fetch stock data")
+            print(f"Failed to fetch stock data for symbol: {symbol}")
             # במקרה של כשל, הצגת נתונים סטטיים
             static_data = self.model.get_static_data()
             self.view.update_stock_info(static_data)
+
+       
 
     def on_buy_clicked(self):
         """

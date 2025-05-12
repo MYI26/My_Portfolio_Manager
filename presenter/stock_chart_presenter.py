@@ -5,8 +5,8 @@ from model.stock_chart_model import StockChartModel
 from view.stock_chart_view import StockChartView
 
 class StockChartPresenter:
-    def __init__(self, chart_view):
-        self.model = StockChartModel()
+    def __init__(self, chart_view, api_url):
+        self.model = StockChartModel(api_url)
         self.view = chart_view
 
         # חיבור הסיגנל מה-View לפונקציה ב-Presenter
@@ -22,21 +22,24 @@ class StockChartPresenter:
         print(f"[ChartPresenter] Range changed to: {range_type}")  # בדיקה
         self.update_chart(range_type)
 
-    def update_chart(self, range_type: str):
-        """
-        טוען נתונים מה-Model ומעדכן את ה-View.
-        """
-        print(f"[ChartPresenter] Updating chart for range: {range_type}")  # בדיקה
-        prices, labels = self.model.get_static_data(range_type)
+    def update_chart(self, range_type: str, symbol="AAPL"):
+        print(f"[ChartPresenter] Updating chart for range: {range_type}, symbol: {symbol}")  # בדיקה
+        prices, labels = self.model.get_static_data(range_type, symbol)
         print(f"[ChartPresenter] Prices: {prices}, Labels: {labels}")  # בדיקה
         chart = self.create_chart(prices, labels)
         self.view.update_chart(chart)
         print("[ChartPresenter] Chart updated in view")  # בדיקה
 
+
     def create_chart(self, prices, labels):
         """
         יוצר גרף חדש עם הנתונים.
         """
+        if not prices or not labels:
+            print("[ChartPresenter] No data to display.")
+            return QChart()  # retourne un graphique vide sans planter
+        
+
         print("[ChartPresenter] Creating chart...")  # בדיקה
         chart = QChart()
         chart.legend().hide()
@@ -79,3 +82,4 @@ class StockChartPresenter:
 
         print("[ChartPresenter] Chart created with axes and series")  # בדיקה
         return chart
+   
