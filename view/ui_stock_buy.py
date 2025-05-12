@@ -38,7 +38,7 @@ class Ui_frame_root(object):
         self.frame_header = QFrame(frame_root)
         self.frame_header.setObjectName(u"frame_header")
         self.frame_header.setMinimumSize(QSize(0, 0))
-        self.frame_header.setLayoutDirection(Qt.LeftToRight)
+        self.frame_header.setLayoutDirection(Qt.RightToLeft)
         self.frame_header.setStyleSheet(u"#frame_header {\n"
 "    border: 1px solid #284b6b;\n"
 "    border-radius: 5px;\n"
@@ -73,7 +73,8 @@ class Ui_frame_root(object):
         font1.setFamilies([u"Segoe UI"])
         font1.setPointSize(9)
         self.commandLinkButton.setFont(font1)
-        self.commandLinkButton.setLayoutDirection(Qt.LeftToRight)
+        self.commandLinkButton.setMouseTracking(False)
+        self.commandLinkButton.setLayoutDirection(Qt.RightToLeft)
         self.commandLinkButton.setStyleSheet(u"color: rgb(40, 75, 107);\n"
 "border-color: rgb(40, 75, 107);")
         self.commandLinkButton.setIconSize(QSize(25, 25))
@@ -164,9 +165,12 @@ class Ui_frame_root(object):
         self.frame_data = QFrame(self.frame_info)
         self.frame_data.setObjectName(u"frame_data")
         self.frame_data.setFont(font)
-        self.frame_data.setStyleSheet(u"#frame_data{	\n"
+        self.frame_data.setStyleSheet(u"\n"
+"#frame_data{	\n"
 "	\n"
-"	\n"
+"	border: 1px solid #274b6f;\n"
+"	border-radius: 5px;\n"
+"	padding: 5px 10px;\n"
 "	color: rgb(40, 73, 107);\n"
 "}\n"
 "")
@@ -178,7 +182,7 @@ class Ui_frame_root(object):
         self.frame_6 = QFrame(self.frame_data)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setFont(font)
-        self.frame_6.setStyleSheet(u"")
+        self.frame_6.setStyleSheet(u"color: rgb(40, 75, 107);")
         self.frame_6.setFrameShape(QFrame.NoFrame)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.frame_6.setLineWidth(0)
@@ -193,6 +197,7 @@ class Ui_frame_root(object):
         sizePolicy1.setHeightForWidth(self.frame_9.sizePolicy().hasHeightForWidth())
         self.frame_9.setSizePolicy(sizePolicy1)
         self.frame_9.setMinimumSize(QSize(0, 0))
+        self.frame_9.setFont(font)
         self.frame_9.setFrameShape(QFrame.NoFrame)
         self.frame_9.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_9)
@@ -202,9 +207,7 @@ class Ui_frame_root(object):
         sizePolicy1.setHeightForWidth(self.lineEdit.sizePolicy().hasHeightForWidth())
         self.lineEdit.setSizePolicy(sizePolicy1)
         self.lineEdit.setMinimumSize(QSize(250, 30))
-        font3 = QFont()
-        font3.setPointSize(4)
-        self.lineEdit.setFont(font3)
+        self.lineEdit.setFont(font)
         self.lineEdit.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.lineEdit.setFrame(True)
 
@@ -250,6 +253,8 @@ class Ui_frame_root(object):
 
         self.frame_5 = QFrame(self.frame_data)
         self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFont(font)
+        self.frame_5.setStyleSheet(u"color: rgb(40, 75, 107);")
         self.frame_5.setFrameShape(QFrame.NoFrame)
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_10 = QHBoxLayout(self.frame_5)
@@ -257,22 +262,12 @@ class Ui_frame_root(object):
         self.horizontalLayout_10.setContentsMargins(-1, 0, -1, 0)
         self.frame_10 = QFrame(self.frame_5)
         self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setMinimumSize(QSize(268, 0))
+        self.frame_10.setFont(font)
         self.frame_10.setFrameShape(QFrame.NoFrame)
         self.frame_10.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_11 = QHBoxLayout(self.frame_10)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.lineEdit_3 = QLineEdit(self.frame_10)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.lineEdit_3.sizePolicy().hasHeightForWidth())
-        self.lineEdit_3.setSizePolicy(sizePolicy2)
-        self.lineEdit_3.setMinimumSize(QSize(250, 30))
-        self.lineEdit_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.horizontalLayout_11.addWidget(self.lineEdit_3)
-
 
         self.horizontalLayout_10.addWidget(self.frame_10)
 
@@ -312,6 +307,8 @@ class Ui_frame_root(object):
 
         self.frame_4 = QFrame(self.frame_data)
         self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setFont(font)
+        self.frame_4.setStyleSheet(u"color: rgb(40, 75, 107);")
         self.frame_4.setFrameShape(QFrame.NoFrame)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_14 = QHBoxLayout(self.frame_4)
@@ -319,19 +316,11 @@ class Ui_frame_root(object):
         self.horizontalLayout_14.setContentsMargins(-1, 0, -1, 0)
         self.frame_16 = QFrame(self.frame_4)
         self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setMinimumSize(QSize(268, 0))
         self.frame_16.setFrameShape(QFrame.NoFrame)
         self.frame_16.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_15 = QHBoxLayout(self.frame_16)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.lineEdit_4 = QLineEdit(self.frame_16)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
-        sizePolicy2.setHeightForWidth(self.lineEdit_4.sizePolicy().hasHeightForWidth())
-        self.lineEdit_4.setSizePolicy(sizePolicy2)
-        self.lineEdit_4.setMinimumSize(QSize(250, 30))
-        self.lineEdit_4.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-
-        self.horizontalLayout_15.addWidget(self.lineEdit_4)
-
 
         self.horizontalLayout_14.addWidget(self.frame_16)
 
@@ -374,25 +363,25 @@ class Ui_frame_root(object):
 
         self.verticalLayout_2.addWidget(self.frame_info)
 
-        self.frame_actio_buttn = QFrame(frame_root)
-        self.frame_actio_buttn.setObjectName(u"frame_actio_buttn")
-        self.frame_actio_buttn.setMinimumSize(QSize(0, 50))
-        self.frame_actio_buttn.setFrameShape(QFrame.NoFrame)
-        self.frame_actio_buttn.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_18 = QHBoxLayout(self.frame_actio_buttn)
+        self.frame_action_buttn = QFrame(frame_root)
+        self.frame_action_buttn.setObjectName(u"frame_action_buttn")
+        self.frame_action_buttn.setMinimumSize(QSize(0, 50))
+        self.frame_action_buttn.setFrameShape(QFrame.NoFrame)
+        self.frame_action_buttn.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.frame_action_buttn)
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.button_bay = QPushButton(self.frame_actio_buttn)
+        self.button_bay = QPushButton(self.frame_action_buttn)
         self.button_bay.setObjectName(u"button_bay")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.button_bay.sizePolicy().hasHeightForWidth())
-        self.button_bay.setSizePolicy(sizePolicy3)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.button_bay.sizePolicy().hasHeightForWidth())
+        self.button_bay.setSizePolicy(sizePolicy2)
         self.button_bay.setMinimumSize(QSize(150, 35))
-        font4 = QFont()
-        font4.setPointSize(11)
-        font4.setBold(False)
-        self.button_bay.setFont(font4)
+        font3 = QFont()
+        font3.setPointSize(11)
+        font3.setBold(False)
+        self.button_bay.setFont(font3)
         self.button_bay.setStyleSheet(u"border: 2px solid #274b6f;\n"
 "border-radius: 5px;\n"
 "padding: 5px 10px;\n"
@@ -401,12 +390,12 @@ class Ui_frame_root(object):
 "")
         self.button_bay.setAutoRepeatDelay(5)
         self.button_bay.setAutoRepeatInterval(5)
-        self.button_bay.setFlat(False)
+        self.button_bay.setAutoDefault(False)
 
         self.horizontalLayout_18.addWidget(self.button_bay)
 
 
-        self.verticalLayout_2.addWidget(self.frame_actio_buttn, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.verticalLayout_2.addWidget(self.frame_action_buttn, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
         self.retranslateUi(frame_root)
@@ -420,6 +409,7 @@ class Ui_frame_root(object):
     def retranslateUi(self, frame_root):
         frame_root.setWindowTitle(QCoreApplication.translate("frame_root", u"Frame", None))
         self.commandLinkButton.setText("")
+        self.commandLinkButton.setDescription("")
         self.label_11.setText(QCoreApplication.translate("frame_root", u"1000$", None))
         self.label_10.setText(QCoreApplication.translate("frame_root", u"Balance:", None))
         self.label_7.setText("")

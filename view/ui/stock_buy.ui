@@ -117,6 +117,9 @@
              <pointsize>9</pointsize>
             </font>
            </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
            <property name="layoutDirection">
             <enum>Qt::RightToLeft</enum>
            </property>
@@ -138,6 +141,9 @@ border-color: rgb(40, 75, 107);</string>
            </property>
            <property name="autoRepeatInterval">
             <number>5</number>
+           </property>
+           <property name="description">
+            <string extracomment="Back to stock data"/>
            </property>
           </widget>
          </item>
@@ -312,9 +318,12 @@ border-color: rgb(40, 75, 107);</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">#frame_data{	
+         <string notr="true">
+#frame_data{	
 	
-	
+	border: 1px solid #274b6f;
+	border-radius: 5px;
+	padding: 5px 10px;
 	color: rgb(40, 73, 107);
 }
 </string>
@@ -337,7 +346,7 @@ border-color: rgb(40, 75, 107);</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">color: rgb(40, 75, 107);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -369,6 +378,11 @@ border-color: rgb(40, 75, 107);</string>
                 <height>0</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
               </property>
@@ -392,7 +406,7 @@ border-color: rgb(40, 75, 107);</string>
                  </property>
                  <property name="font">
                   <font>
-                   <pointsize>4</pointsize>
+                   <pointsize>11</pointsize>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -465,6 +479,14 @@ border-color: rgb(40, 75, 107);</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_5">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(40, 75, 107);</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
            </property>
@@ -480,33 +502,24 @@ border-color: rgb(40, 75, 107);</string>
             </property>
             <item>
              <widget class="QFrame" name="frame_10">
+              <property name="minimumSize">
+               <size>
+                <width>268</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_11">
-               <item>
-                <widget class="QLineEdit" name="lineEdit_3">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>250</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <layout class="QHBoxLayout" name="horizontalLayout_11"/>
              </widget>
             </item>
             <item>
@@ -565,6 +578,14 @@ border-color: rgb(40, 75, 107);</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_4">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(40, 75, 107);</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
            </property>
@@ -580,33 +601,19 @@ border-color: rgb(40, 75, 107);</string>
             </property>
             <item>
              <widget class="QFrame" name="frame_16">
+              <property name="minimumSize">
+               <size>
+                <width>268</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
               </property>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_15">
-               <item>
-                <widget class="QLineEdit" name="lineEdit_4">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="minimumSize">
-                  <size>
-                   <width>250</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <layout class="QHBoxLayout" name="horizontalLayout_15"/>
              </widget>
             </item>
             <item>
@@ -718,10 +725,10 @@ color: rgb(255, 255, 255);
         <property name="autoRepeatInterval">
          <number>5</number>
         </property>
-        <property name="default">
+        <property name="autoDefault">
          <bool>false</bool>
         </property>
-        <property name="flat">
+        <property name="default">
          <bool>false</bool>
         </property>
        </widget>

@@ -46,7 +46,7 @@ class StockChartView(QWidget):
 
         # גרף ברירת מחדל
         self.chart_view = QChartView()
-        self.chart_view.setRenderHint(QPainter.Antialiasing)
+        self.chart_view.setRenderHint(QPainter.Antialiasing)  # ביטול Antialiasing
         self.chart_view.setStyleSheet("""
             QChartView {
                 background-color: #ffffff;

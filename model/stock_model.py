@@ -3,6 +3,8 @@ import requests
 class StockModel:
     def __init__(self, api_url):
         self.api_url = api_url
+        self.stock_price = 80.25  # שווי מניה סטטי לדוגמה
+        self.investment_amount = 0.0  # כמות הכסף שהוזנה
 
     def fetch_stock_data(self):
         """
@@ -28,3 +30,18 @@ class StockModel:
             "close": "80.40",
             "pourcentage": "0.5"
         }
+
+    def set_investment_amount(self, amount: float):
+        """
+        שומר את כמות הכסף שהוזנה.
+        """
+        print(f"[StockModel] Investment amount set to: {amount}")
+        self.investment_amount = amount
+
+    def calculate_shares(self) -> float:
+        """
+        מחשב את כמות המניות שניתן לקנות עבור כמות הכסף שהוזנה.
+        """
+        if self.stock_price == 0:
+            return 0
+        return self.investment_amount / self.stock_price

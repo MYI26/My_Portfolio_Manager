@@ -54,41 +54,45 @@ class Ui_Form(object):
         self.actionsLayout = QVBoxLayout(self.frameActions)
         self.actionsLayout.setObjectName(u"actionsLayout")
         self.actionsLayout.setContentsMargins(40, -1, 40, -1)
-        self.btnSale = QPushButton(self.frameActions)
-        self.btnSale.setObjectName(u"btnSale")
+        self.btnBuy = QPushButton(self.frameActions)
+        self.btnBuy.setObjectName(u"btnBuy")
         sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.btnSale.sizePolicy().hasHeightForWidth())
-        self.btnSale.setSizePolicy(sizePolicy2)
-        self.btnSale.setMinimumSize(QSize(120, 30))
-        font = QFont()
-        font.setPointSize(11)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setKerning(True)
-        self.btnSale.setFont(font)
-        self.btnSale.setCursor(QCursor(Qt.ArrowCursor))
-        self.btnSale.setMouseTracking(False)
-        self.btnSale.setStyleSheet(u"color: white; \n"
-"background-color: rgb(82, 183, 77);\n"
-"border-color: rgb(157, 157, 157);")
-
-        self.actionsLayout.addWidget(self.btnSale)
-
-        self.btnBuy = QPushButton(self.frameActions)
-        self.btnBuy.setObjectName(u"btnBuy")
         sizePolicy2.setHeightForWidth(self.btnBuy.sizePolicy().hasHeightForWidth())
         self.btnBuy.setSizePolicy(sizePolicy2)
         self.btnBuy.setMinimumSize(QSize(120, 30))
-        font1 = QFont()
-        font1.setPointSize(11)
-        self.btnBuy.setFont(font1)
-        self.btnBuy.setStyleSheet(u"color: white;\n"
-"background-color: rgb(228, 60, 76);\n"
-"border-color: rgb(117, 117, 117);")
+        font = QFont()
+        font.setPointSize(11)
+        self.btnBuy.setFont(font)
+        self.btnBuy.setStyleSheet(u"border: 2px solid #274b6f;\n"
+"border-radius: 5px;\n"
+"padding: 5px 10px;\n"
+"background-color: #52b74d;\n"
+"color: rgb(255, 255, 255);")
 
         self.actionsLayout.addWidget(self.btnBuy)
+
+        self.btnSale = QPushButton(self.frameActions)
+        self.btnSale.setObjectName(u"btnSale")
+        sizePolicy2.setHeightForWidth(self.btnSale.sizePolicy().hasHeightForWidth())
+        self.btnSale.setSizePolicy(sizePolicy2)
+        self.btnSale.setMinimumSize(QSize(120, 30))
+        font1 = QFont()
+        font1.setPointSize(11)
+        font1.setBold(False)
+        font1.setItalic(False)
+        font1.setKerning(True)
+        self.btnSale.setFont(font1)
+        self.btnSale.setCursor(QCursor(Qt.ArrowCursor))
+        self.btnSale.setMouseTracking(False)
+        self.btnSale.setStyleSheet(u"border: 2px solid #28496a;\n"
+"border-radius: 5px;\n"
+"padding: 5px 10px;\n"
+"background-color: #ef384c;\n"
+"color: rgb(255, 255, 255);")
+
+        self.actionsLayout.addWidget(self.btnSale)
 
 
         self.headerLayout.addWidget(self.frameActions, 0, Qt.AlignHCenter|Qt.AlignVCenter)
@@ -116,7 +120,7 @@ class Ui_Form(object):
 
         self.openPriceValue = QLabel(self.frameData)
         self.openPriceValue.setObjectName(u"openPriceValue")
-        self.openPriceValue.setFont(font1)
+        self.openPriceValue.setFont(font)
         self.openPriceValue.setMargin(0)
 
         self.dataLayout.addWidget(self.openPriceValue)
@@ -131,7 +135,7 @@ class Ui_Form(object):
 
         self.ClosePriceValue = QLabel(self.frameData)
         self.ClosePriceValue.setObjectName(u"ClosePriceValue")
-        self.ClosePriceValue.setFont(font1)
+        self.ClosePriceValue.setFont(font)
 
         self.dataLayout.addWidget(self.ClosePriceValue)
 
@@ -228,8 +232,8 @@ class Ui_Form(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        self.btnSale.setText(QCoreApplication.translate("Form", u"Sale", None))
         self.btnBuy.setText(QCoreApplication.translate("Form", u"Buy", None))
+        self.btnSale.setText(QCoreApplication.translate("Form", u"Sale", None))
         self.labelOpen.setText(QCoreApplication.translate("Form", u"Open Price: ", None))
         self.openPriceValue.setText(QCoreApplication.translate("Form", u"80.15 USD", None))
         self.labelClose.setText(QCoreApplication.translate("Form", u"Close Price: ", None))

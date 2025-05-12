@@ -66,6 +66,37 @@ background-color: rgb(255, 255, 255);</string>
           <number>40</number>
          </property>
          <item>
+          <widget class="QPushButton" name="btnBuy">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: 2px solid #274b6f;
+border-radius: 5px;
+padding: 5px 10px;
+background-color: #52b74d;
+color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Buy</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="btnSale">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -94,41 +125,14 @@ background-color: rgb(255, 255, 255);</string>
             <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: white; 
-background-color: rgb(82, 183, 77);
-border-color: rgb(157, 157, 157);</string>
+            <string notr="true">border: 2px solid #28496a;
+border-radius: 5px;
+padding: 5px 10px;
+background-color: #ef384c;
+color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
             <string>Sale</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnBuy">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>120</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: white;
-background-color: rgb(228, 60, 76);
-border-color: rgb(117, 117, 117);</string>
-           </property>
-           <property name="text">
-            <string>Buy</string>
            </property>
           </widget>
          </item>
