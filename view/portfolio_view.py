@@ -20,6 +20,8 @@ class PortfolioView(QFrame):
         self.add_stock_item("resources/logos/apple.png", "Apple Inc.", 15, 2200, 2400, 200, 9.1)
         self.add_stock_item("resources/logos/tesla.png", "Tesla", 8, 1600, 1700, 100, 6.25)
         self.add_stock_item("resources/logos/nvidia.png", "NVIDIA", 5, 1400, 1300, -100, -7.1)
+        self.add_stock_item("resources/logos/google.png", "Google", 10, 3000, 3100, 100, 3.33)
+        self.add_stock_item("resources/logos/microsoft.png", "Microsoft", 12, 2400, 2500, 100, 4.17)
 
     def add_stock_item(self, logo_path, company, stock, total_price, current_price, perf_d, perf_p):
         item = QListWidgetItem(self.ui.listWidgetStocks)
