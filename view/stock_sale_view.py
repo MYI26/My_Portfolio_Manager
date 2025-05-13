@@ -1,10 +1,12 @@
-from PySide6.QtWidgets import QFrame, QWidget, QLineEdit
+from PySide6.QtWidgets import QFrame, QWidget, QLineEdit, QMessageBox
 from PySide6.QtCore import Qt, Signal  # ייבוא Qt עבור LayoutDirection ו-Signal
 from view.ui_stock_sale import Ui_frame_root
 
 class StockSaleView(QFrame):  # ירושה מ-QFrame
     return_to_chart = Signal()  # סיגנל לחזרה לגרף
     text_changed_frame_money_amount = Signal(str)  # סיגנל עבור frame_money_amount
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    sell_requested = Signal(float)  # stock_price, quantity
 
     def __init__(self):
         super().__init__()
@@ -16,9 +18,6 @@ class StockSaleView(QFrame):  # ירושה מ-QFrame
         self.ui.frame_header.setLayoutDirection(Qt.RightToLeft)
         self.ui.frame_action_buttn.setLayoutDirection(Qt.RightToLeft)
 
-        # חיבור כפתור ה-sale לאירוע
-        self.ui.button_sale.clicked.connect(self.on_confirm_clicked)
-
         # חיבור commandLinkButton לסיגנל
         self.ui.commandLinkButton.clicked.connect(self.on_return_to_chart_clicked)
 
@@ -29,11 +28,8 @@ class StockSaleView(QFrame):  # ירושה מ-QFrame
         self.ui.label_money.setText("100.0")  # ערך דפולטיבי עבור label_money
         self.ui.label_stock.setText("1.25")  # ערך דפולטיבי עבור label_stock
 
-    def on_confirm_clicked(self):
-        """
-        מטפל בלחיצה על כפתור ה-sale.
-        """
-        print("[StocksaleView] sale button clicked")  # בדיקה
+        # חיבור כפתור ה-sale לאירוע
+        self.ui.button_sale.clicked.connect(self.on_sell_clicked)
 
     def on_return_to_chart_clicked(self):
         """
@@ -60,3 +56,20 @@ class StockSaleView(QFrame):  # ירושה מ-QFrame
         מעדכן את הטקסט של label_stock.
         """
         self.ui.label_stock.setText(text)
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def set_balance_display(self, value: float):
+        self.ui.label_11.setText(f"{value:.2f}$")
+
+    def on_sell_clicked(self):
+        try:
+            quantity = float(self.ui.label_stock.text())
+            self.sell_requested.emit(quantity)  # 💥
+        except ValueError:
+            self.show_error("Quantité invalide.")
+
+    def show_message(self, text: str):
+        QMessageBox.information(self, "Info", text)
+
+    def show_error(self, text: str):
+        QMessageBox.critical(self, "Erreur", text)
