@@ -1,4 +1,4 @@
-# 📄 test1/view/stock_info_view.py
+
 
 import os
 from PySide6.QtWidgets import QWidget, QScrollArea, QBoxLayout
