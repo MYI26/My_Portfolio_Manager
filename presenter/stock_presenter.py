@@ -6,8 +6,8 @@ from view.stock_buy_view import StockBuyView
 from view.stock_sale_view import StockSaleView
 
 class StockPresenter:
-    def __init__(self, api_url):
-        self.model = StockModel(api_url)
+    def __init__(self, api_url, balance):
+        self.model = StockModel(api_url, balance)
         self.view = StockInfoView(self)
 
         # יצירת ה-StockChartPresenter
@@ -33,6 +33,12 @@ class StockPresenter:
             # חיבור הסיגנל של תיבת הטקסט
         self.stock_buy_view.text_changed_frame_money_amount.connect(self.on_text_changed_frame_money_amount)
         self.stock_sale_view.text_changed_frame_money_amount.connect(self.on_text_changed_frame_money_amount_sale)
+
+        """"""""""""""""""""""""""""""""""""""""""""""""
+        self.refresh_balance_view()
+        self.stock_buy_view.buy_requested.connect(self.handle_buy)
+        self.stock_sale_view.sell_requested.connect(self.handle_sell)
+      
 
 
         # חיבור דו-כיווני בין label_money ל-label_stock
@@ -204,3 +210,48 @@ class StockPresenter:
         מציג את ה-View.
         """
         self.view.show()
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def refresh_balance_view(self):
+        balance = self.model.get_balance()
+        self.stock_buy_view.set_balance_display(balance)
+        self.stock_sale_view.set_balance_display(balance)
+
+    def handle_buy(self,quantity: float):
+        stock_price = self.view.get_current_stock_price()
+        total_cost = stock_price * quantity
+        if self.model.can_afford(total_cost):
+            self.model.update_balance(-total_cost)
+
+            # Données depuis les views
+            user_id = "user123"
+            stock_name = self.view.get_current_stock_name()
+            try:
+                self.model.send_transaction(user_id, stock_name, quantity, stock_price)
+            except Exception as e:
+                self.stock_buy_view.show_error(f"Erreur serveur Transaction : {e}")
+                return
+            
+            self.refresh_balance_view()
+            self.stock_buy_view.show_message("Achat effectué avec succès !")
+        else:
+            self.stock_buy_view.show_error("Fonds insuffisants pour acheter.")
+
+    def handle_sell(self, quantity: float):
+        stock_price = self.view.get_current_stock_price()
+        total_gain = stock_price * quantity
+        self.model.update_balance(total_gain)
+
+        stock_name = self.view.get_current_stock_name()
+        user_id = "user123"  # À remplacer plus tard
+
+        try:
+            self.model.send_sell_transaction(user_id, stock_name, quantity, stock_price)
+        except Exception as e:
+            self.stock_sale_view.show_error(f"Erreur serveur Transaction : {e}")
+            return   
+        
+        self.refresh_balance_view()
+        self.stock_sale_view.show_message("Vente effectuée !")
+
+    

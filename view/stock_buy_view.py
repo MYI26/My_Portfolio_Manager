@@ -1,10 +1,12 @@
-from PySide6.QtWidgets import QFrame, QWidget, QLineEdit
+from PySide6.QtWidgets import QFrame, QWidget, QLineEdit, QMessageBox
 from PySide6.QtCore import Qt, Signal  # ייבוא Qt עבור LayoutDirection ו-Signal
 from view.ui_stock_buy import Ui_frame_root
 
 class StockBuyView(QFrame):  # ירושה מ-QFrame
     return_to_chart = Signal()  # סיגנל לחזרה לגרף
     text_changed_frame_money_amount = Signal(str)  # סיגנל עבור frame_money_amount
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    buy_requested = Signal(float)  # quantity
 
     def __init__(self):
         super().__init__()
@@ -28,12 +30,6 @@ class StockBuyView(QFrame):  # ירושה מ-QFrame
         # הגדרת ערכים דפולטיביים ללייבלים
         self.ui.label_money.setText("100.0")  # ערך דפולטיבי עבור label_money
         self.ui.label_stock.setText("1.25")  # ערך דפולטיבי עבור label_stock
-
-    def on_confirm_clicked(self):
-        """
-        מטפל בלחיצה על כפתור ה-Buy.
-        """
-        print("[StockBuyView] Buy button clicked")  # בדיקה
 
     def on_return_to_chart_clicked(self):
         """
@@ -60,3 +56,20 @@ class StockBuyView(QFrame):  # ירושה מ-QFrame
         מעדכן את הטקסט של label_stock.
         """
         self.ui.label_stock.setText(text)
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def set_balance_display(self, value: float):
+        self.ui.label_11.setText(f"{value:.2f}$")
+
+    def on_confirm_clicked(self):
+        try:
+            quantity = float(self.ui.label_stock.text())        # quantité entrée par l’utilisateur
+            self.buy_requested.emit(quantity)   # 🔥 signal vers le presenter
+        except ValueError:
+            self.show_error("Veuillez entrer une quantité valide.")
+
+    def show_message(self, text: str):
+        QMessageBox.information(self, "Info", text)
+
+    def show_error(self, text: str):
+        QMessageBox.critical(self, "Erreur", text)

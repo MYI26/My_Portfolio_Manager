@@ -79,3 +79,11 @@ class StockInfoView(QWidget):
         """
         print("[StockInfoView] Sale button clicked")  # בדיקה
         self.sale_clicked.emit()
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def get_current_stock_name(self) -> str:
+        return self.ui.labelSymbol.text()  # ou label du nom d'action
+
+    def get_current_stock_price(self) -> float:
+        price_text = self.ui.labelCurntPriceValue.text().split()[0]  # Extract the numeric part
+        return float(price_text)
