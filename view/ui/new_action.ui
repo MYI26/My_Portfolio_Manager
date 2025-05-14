@@ -19,31 +19,56 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="labelTitle">
+     <property name="styleSheet">
+      <string notr="true">font-size: 24px; font-weight: bold; color: rgb(40, 75, 107);</string>
+     </property>
      <property name="text">
       <string>New Action</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
-     <property name="styleSheet">
-      <string notr="true">font-size: 24px; font-weight: bold; color: rgb(40, 75, 107);</string>
-     </property>
     </widget>
    </item>
    <item>
     <widget class="QLineEdit" name="lineEditSearch">
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid rgb(40, 75, 107); border-radius: 5px; padding: 8px; font-size: 14px;</string>
+     </property>
      <property name="placeholderText">
       <string>Search for a stock...</string>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 1px solid #ccc; border-radius: 5px; padding: 8px; font-size: 14px;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="gridContainer">
-     <layout class="QGridLayout" name="gridLayout">
-     </layout>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1047</width>
+        <height>497</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

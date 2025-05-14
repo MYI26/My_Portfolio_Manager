@@ -1,6 +1,6 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
+<RCC>
   <qresource prefix="/">
     <file>images/bg_trading.png</file>
+    <file>icons/wallet.png</file>
   </qresource>
 </RCC>

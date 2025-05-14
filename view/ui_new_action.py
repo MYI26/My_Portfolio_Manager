@@ -16,7 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QSizePolicy, QVBoxLayout, QWidget)
+    QLineEdit, QScrollArea, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_Frame_New_Action(object):
     def setupUi(self, Frame_New_Action):
@@ -31,24 +32,29 @@ class Ui_Frame_New_Action(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.labelTitle = QLabel(Frame_New_Action)
         self.labelTitle.setObjectName(u"labelTitle")
-        self.labelTitle.setAlignment(Qt.AlignCenter)
         self.labelTitle.setStyleSheet(u"font-size: 24px; font-weight: bold; color: rgb(40, 75, 107);")
+        self.labelTitle.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.labelTitle)
 
         self.lineEditSearch = QLineEdit(Frame_New_Action)
         self.lineEditSearch.setObjectName(u"lineEditSearch")
-        self.lineEditSearch.setStyleSheet(u"border: 1px solid #ccc; border-radius: 5px; padding: 8px; font-size: 14px;")
+        self.lineEditSearch.setStyleSheet(u"border: 1px solid rgb(40, 75, 107); border-radius: 5px; padding: 8px; font-size: 14px;")
 
         self.verticalLayout.addWidget(self.lineEditSearch)
 
-        self.gridContainer = QWidget(Frame_New_Action)
-        self.gridContainer.setObjectName(u"gridContainer")
-        self.gridLayout = QGridLayout(self.gridContainer)
+        self.scrollArea = QScrollArea(Frame_New_Action)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1047, 497))
+        self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setContentsMargins(20, 20, 20, 20)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        self.verticalLayout.addWidget(self.gridContainer)
+        self.verticalLayout.addWidget(self.scrollArea)
 
 
         self.retranslateUi(Frame_New_Action)

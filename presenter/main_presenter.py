@@ -4,34 +4,43 @@ from view.main_window_view import MainWindowView
 from view.portfolio_view import PortfolioView
 from view.history_view import HistoryView
 from view.new_action_view import NewActionView
+from view.ask_AI_chat_view import AskAIChatView
 from model.portfolio_model import PortfolioModel
+from threading import Timer
 
 class MainPresenter:
     def __init__(self):
-        self.window = MainWindowView()
-        self.current_view = None
+        self.main_window_view = MainWindowView()
+        self.ask_ai_chat_view = AskAIChatView()
 
-        # חיבור כפתור history
-        self.window.ui.pushButton_hom_2.clicked.connect(self.load_history)
+        # חיבור סיגנלים
+        self.main_window_view.signal_ask_ai_chat_clicked.connect(self.show_ask_ai_chat)
+        self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
+        self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
 
-        # חיבור כפתור home
-        self.window.ui.pushButton_hom.clicked.connect(self.load_portfolio)
-        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-        self.model = PortfolioModel()
-        self.load_portfolio()
+    def show_view(self):
+        """הצגת החלון הראשי."""
+        self.main_window_view.show()
 
-
-
-        # חיבור כפתור new action
-        self.window.ui.pushButton_action.clicked.connect(self.load_new_action)
+    def show_ask_ai_chat(self):
+        """הצגת פריים Ask AI Chat."""
+        layout = self.main_window_view.ui.frame_content.layout()
+        if layout is not None:
+            # נקה את התוכן הקיים
+            while layout.count():
+                child = layout.takeAt(0)
+                if child.widget():
+                    child.widget().deleteLater()
+            # הוסף את הפריים החדש
+            layout.addWidget(self.ask_ai_chat_view)
 
     def load_portfolio(self):
-        self.clear_layout(self.window.ui.frame_content.layout())
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
 
         portfolio_view = PortfolioView()
-        self.window.ui.frame_content.layout().addWidget(portfolio_view)
+        self.main_window_view.ui.frame_content.layout().addWidget(portfolio_view)
         self.current_view = portfolio_view
-        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
         data = self.model.get_user_portfolio("ben")
         invested = self.model.get_invested_capital("ben")
         detailed_data = []
@@ -67,24 +76,46 @@ class MainPresenter:
         )
 
     def load_history(self):
-        self.clear_layout(self.window.ui.frame_content.layout())
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
         history = HistoryView()
-        self.window.ui.frame_content.layout().addWidget(history)
+        self.main_window_view.ui.frame_content.layout().addWidget(history)
         self.current_view = history
 
     def load_new_action(self):
-        self.clear_layout(self.window.ui.frame_content.layout())
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
         new_action = NewActionView()
-        self.window.ui.frame_content.layout().addWidget(new_action)
+        self.main_window_view.ui.frame_content.layout().addWidget(new_action)
         self.current_view = new_action
 
+    def _on_clear_clicked(self):
+        """טיפול בלחיצה על כפתור Clear."""
+        print("Clear button clicked")
+
+    def _on_question_submitted(self, question):
+        """טיפול בשאלה שנשלחה."""
+        print(f"[DEBUG] שאלה שנשלחה: {question}")
+        self.ask_ai_chat_view.show_loading()
+        self._simulate_long_answer()
+
+    def _simulate_long_answer(self):
+        """סימולציה של תגובה ארוכה."""
+        predefined_answer = (
+            "This is a long response from the AI. It is designed to test the scrolling "
+            "functionality and ensure that the UI behaves correctly when displaying a "
+            "large amount of text. The answer continues with more details, explanations, "
+            "and examples to simulate a realistic response. This is only a test, so the "
+            "content is static and does not come from an actual server. Thank you for "
+            "testing the Ask AI Chat feature!"
+        )
+
+        # הצגת התשובה לאחר 5 שניות (במקום 20 שניות)
+        Timer(10.0, lambda: self.ask_ai_chat_view.show_answer(predefined_answer)).start()
+
     def clear_layout(self, layout):
+        """ניקוי תוכן הלייאאוט."""
         if layout is not None:
             while layout.count():
                 item = layout.takeAt(0)
                 widget = item.widget()
                 if widget is not None:
                     widget.deleteLater()
-
-    def show_view(self):
-        self.window.show()

@@ -1,17 +1,19 @@
-import os
-from PySide6.QtWidgets import QFrame, QScrollArea, QVBoxLayout
-from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QFrame, QVBoxLayout  # הוספת QFrame לייבוא
 from PySide6.QtCore import Qt, Signal
 from view.ui_main_window import Ui_Frame_main_window
 from view.portfolio_view import PortfolioView
 
 
-class MainWindowView(QFrame):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+class MainWindowView(QFrame):  # שינוי הירושה ל-QFrame
+    signal_ask_ai_chat_clicked = Signal()  # הגדרת הסיגנל
+
+    def __init__(self):
+        super().__init__()
+        self.setup_ui()
+
+    def setup_ui(self):
         self.ui = Ui_Frame_main_window()
         self.ui.setupUi(self)
-        
 
         # הגדרת כיוון פריסת הלייאאוט
         self.ui.frame_header.setLayoutDirection(Qt.RightToLeft)
@@ -23,3 +25,10 @@ class MainWindowView(QFrame):
 
         self.portfolio_view = PortfolioView()
         self.ui.frame_content.layout().addWidget(self.portfolio_view)
+
+        # Connect the "Ask AI Chat" button to emit the signal
+        self.ui.pushButton_AiChat.clicked.connect(self._on_ask_ai_chat_clicked)
+
+    def _on_ask_ai_chat_clicked(self):
+        """Emit the signal when the 'Ask AI Chat' button is clicked."""
+        self.signal_ask_ai_chat_clicked.emit()

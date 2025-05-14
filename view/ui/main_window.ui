@@ -23,31 +23,31 @@
 gridline-color: none;
 color: rgb(40, 75, 107);</string>
   </property>
-  <property name="frameShape">
-   <enum>QFrame::NoFrame</enum>
-  </property>
-  <property name="lineWidth">
-   <number>0</number>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
-    <number>10</number>
-   </property>
-   <property name="topMargin">
     <number>20</number>
    </property>
+   <property name="topMargin">
+    <number>30</number>
+   </property>
    <property name="rightMargin">
-    <number>10</number>
+    <number>20</number>
    </property>
    <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
     <widget class="QFrame" name="frame_header">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>90</height>
+       <height>80</height>
       </size>
      </property>
      <property name="font">
@@ -429,7 +429,7 @@ color: rgb(255, 255, 255);</string>
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>../../../Users/1/Pictures/Screenshots/צילום מסך 2025-05-12 012640.png</pixmap>
+               <pixmap resource="../../resources/resources.qrc">:/icons/wallet.png</pixmap>
               </property>
               <property name="scaledContents">
                <bool>true</bool>
