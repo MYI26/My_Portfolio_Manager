@@ -68,3 +68,34 @@ class PortfolioView(QFrame):
 
         widget.setLayout(layout)
         self.ui.listWidgetStocks.setItemWidget(item, widget)
+
+    def display_portfolio(self, portfolio_data: list):
+        self.ui.listWidgetStocks.clear()
+
+        for data in portfolio_data:
+            symbol = data["symbol"]
+            quantity = data["quantity"]
+            current_price = data["current_price"]
+            total_price = data["invested_capital"]
+            perf_d = data["perf_d"]
+            perf_p = data["perf_p"]
+
+            logo_path = f"resources/logos/apple.png"
+            company_name = symbol  # pour l’instant on affiche le symbole
+
+            self.add_stock_item(logo_path, company_name, quantity, total_price, current_price, perf_d, perf_p)
+
+    def display_portfolio_totals(self, capital_total, valeur_totale, perf_d, perf_p):
+        print("[INFO] TOTALS")
+        print(f"Capital investi total : {capital_total:.2f} $")
+        print(f"Valeur actuelle totale : {valeur_totale:.2f} $")
+        print(f"Performance totale : {perf_d:+.2f} $ ({perf_p:+.2f} %)")
+
+        self.ui.label_2.setText(f"{capital_total:.2f} $")
+        self.ui.label_4.setText(f"{valeur_totale:.2f} $")
+        self.ui.label_6.setText(f"{perf_d:+.2f} $")
+        self.ui.label_8.setText(f"{perf_p:+.2f} %")
+
+        color = "green" if perf_d >= 0 else "red"
+        self.ui.label_6.setStyleSheet(f"color: {color}")
+        self.ui.label_8.setStyleSheet(f"color: {color}")
