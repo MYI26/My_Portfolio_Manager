@@ -6,21 +6,33 @@ from view.history_view import HistoryView
 from view.new_action_view import NewActionView
 from view.ask_AI_chat_view import AskAIChatView
 from model.portfolio_model import PortfolioModel
+from model.transactions_model import TransactionModel
 from threading import Timer
 
-class MainPresenter:
-    def __init__(self):
-        self.main_window_view = MainWindowView()
-        self.ask_ai_chat_view = AskAIChatView()
 
-        # חיבור סיגנלים
-        self.main_window_view.signal_ask_ai_chat_clicked.connect(self.show_ask_ai_chat)
+
+class MainPresenter:
+    def __init__(self, balance, user_id):
+        self.window = MainWindowView()
+        self.user_id = user_id
+        self.current_view = None
+
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
+        # חיבור כפתור home
+        self.window.ui.pushButton_hom.clicked.connect(self.load_portfolio)
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        self.model = PortfolioModel()
+        self.balance = balance
+        self.load_portfolio()
+        self.history_view = HistoryView()
+        self.transaction_model = TransactionModel()
+        self.window.ui.pushButton_hom_2.clicked.connect(self.load_history)
+        self.transaction_history_data = []
+        self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici   
 
-    def show_view(self):
-        """הצגת החלון הראשי."""
-        self.main_window_view.show()
+
+   
 
     def show_ask_ai_chat(self):
         """הצגת פריים Ask AI Chat."""
@@ -29,11 +41,6 @@ class MainPresenter:
             # נקה את התוכן הקיים
             while layout.count():
                 child = layout.takeAt(0)
-                if child.widget():
-                    child.widget().deleteLater()
-            # הוסף את הפריים החדש
-            layout.addWidget(self.ask_ai_chat_view)
-
     def load_portfolio(self):
         self.clear_layout(self.main_window_view.ui.frame_content.layout())
 
@@ -70,22 +77,48 @@ class MainPresenter:
         performance_total_d = valeur_actuelle_total - capital_total
         performance_total_p = (performance_total_d / capital_total * 100) if capital_total != 0 else 0    
         print("[DEBUG] Données envoyées à la vue :", detailed_data)
-        portfolio_view.display_portfolio(detailed_data)
+        portfolio_view.display_portfolio(detailed_data, self.user_id)
         portfolio_view.display_portfolio_totals(
-        capital_total, valeur_actuelle_total, performance_total_d, performance_total_p
+        capital_total, valeur_actuelle_total, performance_total_d, performance_total_p, self.balance
         )
 
-    def load_history(self):
-        self.clear_layout(self.main_window_view.ui.frame_content.layout())
-        history = HistoryView()
-        self.main_window_view.ui.frame_content.layout().addWidget(history)
-        self.current_view = history
+    # def load_history(self):
+    #     # ניקוי ה-layout של frame_content
+    #     self.clear_layout(self.window.ui.frame_content.layout())
 
-    def load_new_action(self):
-        self.clear_layout(self.main_window_view.ui.frame_content.layout())
-        new_action = NewActionView()
-        self.main_window_view.ui.frame_content.layout().addWidget(new_action)
-        self.current_view = new_action
+    #     history = HistoryView()
+    #     self.window.ui.frame_content.layout().addWidget(history)
+    #     self.current_view = history
+
+    def load_history(self):
+        self.clear_layout(self.window.ui.frame_content.layout())
+        self.window.ui.frame_content.layout().addWidget(self.history_view)
+        self.current_view = self.history_view
+
+        self.history_view.on_filter_changed(self.on_filter_changed)
+
+        # Nouvelle ligne : on charge les données depuis le modèle
+        self.load_transaction_history(self.user_id)  # ⚠️ adapter le nom de l’utilisateur
+
+    def load_transaction_history(self, user_id):
+        # operations = self.transaction_model.fetch_history(user_id)
+        # print("[DEBUG] Réponse brute reçue du serveur TRANSACTIONS:", operations) 
+        
+        # for op in operations:
+        #     symbol = op["stockName"]
+        #     company = symbol  # temporaire, en attendant mieux
+        #     date = op["date"].split("T")[0]
+        #     order_type = op["type"]
+        #     price = op["pricePerUnit"]
+        #     qty = op["quantity"]
+        #     total = price * qty
+
+        #     logo_path = f"resources/logos/apple.png"
+
+        #     # on passe les données à la vue
+        #     self.current_view.add_history_item(logo_path, company, date, order_type, price, qty, total)
+        self.transaction_history_data = self.transaction_model.fetch_history(user_id)
+        self.display_filtered_history(self.user_id)
 
     def _on_clear_clicked(self):
         """טיפול בלחיצה על כפתור Clear."""
@@ -119,3 +152,39 @@ class MainPresenter:
                 widget = item.widget()
                 if widget is not None:
                     widget.deleteLater()
+
+    def show_view(self):
+        self.window.show()
+
+    def display_filtered_history(self, user_id):
+        if not self.current_view:
+            return
+
+        selected_filter = self.current_view.get_selected_filter()
+        self.current_view.clear_history()
+
+        for op in self.transaction_history_data:
+            if op["userId"] != user_id:
+                continue
+
+            if selected_filter == "Buy" and op["type"].upper() != "BUY":
+                continue
+            if selected_filter == "Sale" and op["type"].upper() != "SELL":
+                continue
+
+            symbol = op["stockName"]
+            company = symbol
+            date = op["date"].split("T")[0]
+            order_type = op["type"].capitalize()
+            price = op["pricePerUnit"]
+            qty = op["quantity"]
+            total = price * qty
+
+            cloud_name = 'dialozuw5'
+            public_id = f"logos/{user_id}_{symbol}"  # Ex: logos/user123_AAPL
+            logo_url = f"https://res.cloudinary.com/{cloud_name}/image/upload/{public_id}.png"
+            print(f"[DEBUG] Logo URL: {logo_url}")
+            self.current_view.add_history_item(logo_url, company, date, order_type, price, qty, total)
+
+    def on_filter_changed(self):
+        self.display_filtered_history(self.user_id)

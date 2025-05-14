@@ -1,12 +1,12 @@
-from PySide6.QtCharts import QChart, QLineSeries, QValueAxis, QCategoryAxis, QScatterSeries
-from PySide6.QtGui import QPen, QColor
-from PySide6.QtCore import QPointF, QMargins, Qt
+from PySide6.QtCharts import QChart, QLineSeries, QValueAxis, QCategoryAxis, QScatterSeries # type: ignore
+from PySide6.QtGui import QPen, QColor # type: ignore
+from PySide6.QtCore import QPointF, QMargins, Qt # type: ignore
 from model.stock_chart_model import StockChartModel
 from view.stock_chart_view import StockChartView
 
 class StockChartPresenter:
-    def __init__(self, chart_view, api_url):
-        self.model = StockChartModel(api_url)
+    def __init__(self, chart_view):
+        self.model = StockChartModel()
         self.view = chart_view
 
         # חיבור הסיגנל מה-View לפונקציה ב-Presenter
