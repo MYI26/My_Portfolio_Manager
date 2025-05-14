@@ -7,8 +7,9 @@ from model.portfolio_model import PortfolioModel
 from model.transactions_model import TransactionModel
 
 class MainPresenter:
-    def __init__(self, balance):
+    def __init__(self, balance, user_id):
         self.window = MainWindowView()
+        self.user_id = user_id
         self.current_view = None
         # חיבור כפתור home
         self.window.ui.pushButton_hom.clicked.connect(self.load_portfolio)
@@ -20,7 +21,7 @@ class MainPresenter:
         self.transaction_model = TransactionModel()
         self.window.ui.pushButton_hom_2.clicked.connect(self.load_history)
         self.transaction_history_data = []
-        self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici
+        self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici   
 
 
     def load_portfolio(self):
@@ -60,7 +61,7 @@ class MainPresenter:
         performance_total_d = valeur_actuelle_total - capital_total
         performance_total_p = (performance_total_d / capital_total * 100) if capital_total != 0 else 0    
         print("[DEBUG] Données envoyées à la vue :", detailed_data)
-        portfolio_view.display_portfolio(detailed_data)
+        portfolio_view.display_portfolio(detailed_data, self.user_id)
         portfolio_view.display_portfolio_totals(
         capital_total, valeur_actuelle_total, performance_total_d, performance_total_p, self.balance
         )
@@ -81,7 +82,7 @@ class MainPresenter:
         self.history_view.on_filter_changed(self.on_filter_changed)
 
         # Nouvelle ligne : on charge les données depuis le modèle
-        self.load_transaction_history("ben")  # ⚠️ adapter le nom de l’utilisateur
+        self.load_transaction_history(self.user_id)  # ⚠️ adapter le nom de l’utilisateur
 
     def load_transaction_history(self, user_id):
         # operations = self.transaction_model.fetch_history(user_id)
@@ -101,7 +102,7 @@ class MainPresenter:
         #     # on passe les données à la vue
         #     self.current_view.add_history_item(logo_path, company, date, order_type, price, qty, total)
         self.transaction_history_data = self.transaction_model.fetch_history(user_id)
-        self.display_filtered_history()
+        self.display_filtered_history(self.user_id)
 
     def clear_layout(self, layout):
         """מנקה את כל הווידג'טים מה-layout."""
@@ -115,7 +116,7 @@ class MainPresenter:
     def show_view(self):
         self.window.show()
 
-    def display_filtered_history(self):
+    def display_filtered_history(self, user_id):
         if not self.current_view:
             return
 
@@ -123,7 +124,7 @@ class MainPresenter:
         self.current_view.clear_history()
 
         for op in self.transaction_history_data:
-            if op["userId"] != "ben":
+            if op["userId"] != user_id:
                 continue
 
             if selected_filter == "Buy" and op["type"].upper() != "BUY":
@@ -139,8 +140,11 @@ class MainPresenter:
             qty = op["quantity"]
             total = price * qty
 
-            logo_path = f"resources/logos/{symbol.lower()}.png"
-            self.current_view.add_history_item(logo_path, company, date, order_type, price, qty, total)
+            cloud_name = 'dialozuw5'
+            public_id = f"logos/{user_id}_{symbol}"  # Ex: logos/user123_AAPL
+            logo_url = f"https://res.cloudinary.com/{cloud_name}/image/upload/{public_id}.png"
+            print(f"[DEBUG] Logo URL: {logo_url}")
+            self.current_view.add_history_item(logo_url, company, date, order_type, price, qty, total)
 
     def on_filter_changed(self):
-        self.display_filtered_history()
+        self.display_filtered_history(self.user_id)

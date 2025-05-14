@@ -3,6 +3,9 @@ from view.ui_history import Ui_Frame_History
 from PySide6.QtGui import QFont, QPixmap # type: ignore
 from PySide6.QtCore import Qt, QSize # type: ignore
 from PySide6.QtWidgets import QLabel, QHBoxLayout # type: ignore
+from urllib.request import urlopen, Request
+import ssl
+from PySide6.QtCore import QByteArray # type: ignore
 
 
 class HistoryView(QFrame):
@@ -32,9 +35,16 @@ class HistoryView(QFrame):
 
         # לוגו
         label_logo = QLabel()
-        pixmap = QPixmap(logo_path)
-        if not pixmap.isNull():
-            label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        try:
+            req = Request(logo_path, headers={"User-Agent": "Mozilla/5.0"})
+            with urlopen(req, context=ssl._create_unverified_context()) as response:
+                data = response.read()
+                pixmap = QPixmap()
+                pixmap.loadFromData(QByteArray(data))
+                if not pixmap.isNull():
+                    label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        except Exception as e:
+            print(f"❌ Erreur lors du chargement de l'image: {e}")
         layout.addWidget(label_logo)
 
         # שם מסחרי

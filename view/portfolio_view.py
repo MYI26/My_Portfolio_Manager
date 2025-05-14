@@ -1,10 +1,11 @@
-# 📄 view/portfolio_view.py
-
-from PySide6.QtWidgets import QFrame, QListWidgetItem
+from PySide6.QtWidgets import QFrame, QListWidgetItem # type: ignore
 from view.ui_portfolio import Ui_Frame_Portfolio
-from PySide6.QtGui import QFont, QPixmap
-from PySide6.QtCore import Qt, QSize
-from PySide6.QtWidgets import QLabel, QHBoxLayout
+from PySide6.QtGui import QFont, QPixmap # type: ignore
+from PySide6.QtCore import Qt, QSize # type: ignore
+from PySide6.QtWidgets import QLabel, QHBoxLayout # type: ignore
+from urllib.request import urlopen, Request
+import ssl
+from PySide6.QtCore import QByteArray # type: ignore
 
 
 class PortfolioView(QFrame):
@@ -34,9 +35,16 @@ class PortfolioView(QFrame):
 
         # לוגו
         label_logo = QLabel()
-        pixmap = QPixmap(logo_path)
-        if not pixmap.isNull():
-            label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        try:
+            req = Request(logo_path, headers={"User-Agent": "Mozilla/5.0"})
+            with urlopen(req, context=ssl._create_unverified_context()) as response:
+                data = response.read()
+                pixmap = QPixmap()
+                pixmap.loadFromData(QByteArray(data))
+                if not pixmap.isNull():
+                    label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        except Exception as e:
+            print(f"❌ Erreur lors du chargement de l'image: {e}")
         layout.addWidget(label_logo)
 
         # שם מסחרי
@@ -69,7 +77,7 @@ class PortfolioView(QFrame):
         widget.setLayout(layout)
         self.ui.listWidgetStocks.setItemWidget(item, widget)
 
-    def display_portfolio(self, portfolio_data: list):
+    def display_portfolio(self, portfolio_data: list,user_id: str):
         self.ui.listWidgetStocks.clear()
 
         for data in portfolio_data:
@@ -80,7 +88,9 @@ class PortfolioView(QFrame):
             perf_d = data["perf_d"]
             perf_p = data["perf_p"]
 
-            logo_path = f"resources/logos/apple.png"
+            cloud_name = 'dialozuw5'
+            public_id = f"logos/{user_id}_{symbol}"  # Ex: logos/user123_AAPL
+            logo_path = f"https://res.cloudinary.com/{cloud_name}/image/upload/{public_id}.png"
             company_name = symbol  # pour l’instant on affiche le symbole
 
             self.add_stock_item(logo_path, company_name, quantity, total_price, current_price, perf_d, perf_p)

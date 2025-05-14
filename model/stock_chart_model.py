@@ -1,17 +1,19 @@
 from datetime import datetime, timedelta
 import random
-import requests
+import requests # type: ignore
+
+MARKET_URL = "https://localhost:7229/api/market"
 
 class StockChartModel:
-    def __init__(self, api_url):
-        self.api_url = api_url  # Ex: "https://localhost:7105/api/Data_Market_/history"
+    def __init__(self):
+        pass
 
     def get_static_data(self, range_type: str, symbol: str):
         print(f"[Model] Fetching REAL data for {symbol} with range: {range_type}")
 
         try:
-            url = f"{self.api_url}/history/{symbol}"  # Ex: "https://localhost:7105/api/Data_Market_/history/AAPL"
-            response = requests.get(url, verify=False)  # ⚠️ verify=False temporairement si HTTPS auto-signé
+            url = f"{MARKET_URL}/history/{symbol}"  
+            response = requests.get(url, verify=False) 
             if response.status_code == 404:
                 print(f"[Model] Error: Data not found for {symbol} at {url}")
                 return [], []

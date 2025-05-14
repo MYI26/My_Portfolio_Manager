@@ -1,4 +1,4 @@
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import QTimer # type: ignore
 from model.stock_model import StockModel
 from view.stock_info_view import StockInfoView
 from presenter.stock_chart_presenter import StockChartPresenter
@@ -6,12 +6,13 @@ from view.stock_buy_view import StockBuyView
 from view.stock_sale_view import StockSaleView
 
 class StockPresenter:
-    def __init__(self, api_url, balance):
-        self.model = StockModel(api_url, balance)
+    def __init__(self, balance, user_id):
+        self.model = StockModel(balance)
         self.view = StockInfoView(self)
+        self.user_id = user_id
 
         # יצירת ה-StockChartPresenter
-        self.chart_presenter = StockChartPresenter(self.view.get_chart_view(),api_url )
+        self.chart_presenter = StockChartPresenter(self.view.get_chart_view())
         self.stock_buy_view = StockBuyView()
         self.stock_sale_view = StockSaleView()
 
@@ -155,14 +156,14 @@ class StockPresenter:
             investment = 0.0
 
         # עדכון המודל
-        self.model.set_investment_amount(investment)
+        #♣self.model.set_investment_amount(investment)
 
         # חישוב כמות המניות
-        shares = self.model.calculate_shares()
+        #♣shares = self.model.calculate_shares()
 
         # עדכון ה-View
-        self.stock_buy_view.update_label_money(f"{investment:.2f}")
-        self.stock_buy_view.update_label_stock(f"{shares:.2f}")
+        # self.stock_buy_view.update_label_money(f"{investment:.2f}")
+        # self.stock_buy_view.update_label_stock(f"{shares:.2f}")
 
     def on_text_changed_frame_money_amount_sale(self, text: str):
         """
@@ -177,11 +178,11 @@ class StockPresenter:
         self.model.set_investment_amount(investment)
 
         # חישוב כמות המניות
-        shares = self.model.calculate_shares()
+        #shares = self.model.calculate_shares()
 
         # עדכון ה-View
-        self.stock_sale_view.update_label_money(f"{investment:.2f}")
-        self.stock_sale_view.update_label_stock(f"{shares:.2f}")
+        # self.stock_sale_view.update_label_money(f"{investment:.2f}")
+        # self.stock_sale_view.update_label_stock(f"{shares:.2f}")
 
 
     def on_return_to_chart(self):
@@ -222,17 +223,16 @@ class StockPresenter:
         total_cost = stock_price * quantity
         if self.model.can_afford(total_cost):
             self.model.update_balance(-total_cost)
-
-            # Données depuis les views
-            user_id = "user123"
             stock_name = self.view.get_current_stock_name()
             try:
-                self.model.send_transaction(user_id, stock_name, quantity, stock_price)
+                self.model.send_transaction(self.user_id, stock_name, quantity, stock_price)
             except Exception as e:
                 self.stock_buy_view.show_error(f"Erreur serveur Transaction : {e}")
                 return
             
             self.refresh_balance_view()
+            logo_path = self.view.get_current_logo_url()  # Chemin de la photo
+            self.model.upload_stock_logo_to_cloudinary(logo_path, stock_name, self.user_id)   #lors de l'achat: enregistrer la photo sur CLOUDINARY
             self.stock_buy_view.show_message("Achat effectué avec succès !")
         else:
             self.stock_buy_view.show_error("Fonds insuffisants pour acheter.")
