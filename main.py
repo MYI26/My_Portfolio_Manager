@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     # יצירת ה-Presenter של המידע על המניה
     #presenter = StockPresenter(api_url=API_URL, balance=BALANCE) 
-    presenter = MainPresenter() 
+    presenter = MainPresenter(balance=BALANCE) 
     presenter.show_view()
 
     sys.exit(app.exec())

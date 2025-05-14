@@ -7,13 +7,14 @@ from model.portfolio_model import PortfolioModel
 from model.transactions_model import TransactionModel
 
 class MainPresenter:
-    def __init__(self):
+    def __init__(self, balance):
         self.window = MainWindowView()
         self.current_view = None
         # חיבור כפתור home
         self.window.ui.pushButton_hom.clicked.connect(self.load_portfolio)
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.model = PortfolioModel()
+        self.balance = balance
         self.load_portfolio()
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
@@ -61,7 +62,7 @@ class MainPresenter:
         print("[DEBUG] Données envoyées à la vue :", detailed_data)
         portfolio_view.display_portfolio(detailed_data)
         portfolio_view.display_portfolio_totals(
-        capital_total, valeur_actuelle_total, performance_total_d, performance_total_p
+        capital_total, valeur_actuelle_total, performance_total_d, performance_total_p, self.balance
         )
 
     # def load_history(self):

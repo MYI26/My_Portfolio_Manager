@@ -5,7 +5,7 @@ TRANSACTIONS_URL = "https://localhost:7229/api/Transactions"
 MARKET_URL = "https://localhost:7229/api/Market" 
 
 class PortfolioModel:
-    def get_user_portfolio(self, user_id):
+    def get_user_portfolio(self, user_id,):
         url = f"{TRANSACTIONS_URL}/history/{user_id}"
         response = requests.get(url, verify=False)
         events = response.json()

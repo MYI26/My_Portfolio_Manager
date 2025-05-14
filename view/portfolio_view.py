@@ -85,17 +85,27 @@ class PortfolioView(QFrame):
 
             self.add_stock_item(logo_path, company_name, quantity, total_price, current_price, perf_d, perf_p)
 
-    def display_portfolio_totals(self, capital_total, valeur_totale, perf_d, perf_p):
+    def display_portfolio_totals(self, capital_total, valeur_totale, perf_d, perf_p, balance):
         print("[INFO] TOTALS")
         print(f"Capital investi total : {capital_total:.2f} $")
         print(f"Valeur actuelle totale : {valeur_totale:.2f} $")
         print(f"Performance totale : {perf_d:+.2f} $ ({perf_p:+.2f} %)")
 
+        #arrondir perf_p et perf_d à 2 décimales
+        perf_d = round(perf_d, 2)
+        perf_p = round(perf_p, 2)
+        
         self.ui.label_2.setText(f"{capital_total:.2f} $")
         self.ui.label_4.setText(f"{valeur_totale:.2f} $")
         self.ui.label_6.setText(f"{perf_d:+.2f} $")
         self.ui.label_8.setText(f"{perf_p:+.2f} %")
 
+        current_cash = balance
+        portfolio_value = balance + perf_d;   
+        self.ui.label_10.setText(f"{current_cash} $")
+        self.ui.label_12.setText(f"{portfolio_value} $")
+
         color = "green" if perf_d >= 0 else "red"
         self.ui.label_6.setStyleSheet(f"color: {color}")
         self.ui.label_8.setStyleSheet(f"color: {color}")
+
