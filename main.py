@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication # type: ignore
 from presenter.stock_presenter import StockPresenter
 from presenter.main_presenter import MainPresenter
 
