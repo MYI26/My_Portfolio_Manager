@@ -25,7 +25,7 @@ class Ui_Frame_History(object):
             Frame_History.setObjectName(u"Frame_History")
         Frame_History.resize(1067, 484)
         Frame_History.setLayoutDirection(Qt.RightToLeft)
-        Frame_History.setStyleSheet(u"#Frame_Portfolio{	\n"
+        Frame_History.setStyleSheet(u"#Frame_History{	\n"
 "	\n"
 "	border: 1px solid #274b6f;\n"
 "	border-radius: 5px;\n"

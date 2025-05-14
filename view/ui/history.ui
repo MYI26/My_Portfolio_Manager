@@ -14,7 +14,7 @@
    <enum>Qt::RightToLeft</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">#Frame_Portfolio{	
+   <string notr="true">#Frame_History{	
 	
 	border: 1px solid #274b6f;
 	border-radius: 5px;
