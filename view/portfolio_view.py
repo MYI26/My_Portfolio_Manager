@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QFrame, QListWidgetItem # type: ignore
 from view.ui_portfolio import Ui_Frame_Portfolio
 from PySide6.QtGui import QFont, QPixmap # type: ignore
-from PySide6.QtCore import Qt, QSize # type: ignore
+from PySide6.QtCore import Qt, QSize, Signal # type: ignore
 from PySide6.QtWidgets import QLabel, QHBoxLayout # type: ignore
 from urllib.request import urlopen, Request
 import ssl
@@ -9,13 +9,15 @@ from PySide6.QtCore import QByteArray # type: ignore
 
 
 class PortfolioView(QFrame):
+    stock_selected = Signal(str)  # סיגנל חדש: שולח את הסימבול של המניה
+
     def __init__(self):
         super().__init__()
         self.ui = Ui_Frame_Portfolio()
         self.ui.setupUi(self)
 
-        # הגדרת כיוון ה-QListWidget לשמאל לימין
         self.ui.listWidgetStocks.setLayoutDirection(Qt.LeftToRight)
+        self.ui.listWidgetStocks.itemClicked.connect(self._on_item_clicked)  # חיבור לאירוע לחיצה
 
         # דוגמה סטטית: יצירת שלושה אייטמים
         self.add_stock_item("resources/logos/apple.png", "Apple Inc.", 15, 2200, 2400, 200, 9.1)
@@ -24,9 +26,18 @@ class PortfolioView(QFrame):
         self.add_stock_item("resources/logos/google.png", "Google", 10, 3000, 3100, 100, 3.33)
         self.add_stock_item("resources/logos/microsoft.png", "Microsoft", 12, 2400, 2500, 100, 4.17)
 
+    def _on_item_clicked(self, item):
+        # שליפת הסימבול מהאייטם (בהנחה שהוא נשמר ב־QListWidgetItem)
+        symbol = item.data(Qt.UserRole)
+        if symbol:
+            self.stock_selected.emit(symbol)
+
     def add_stock_item(self, logo_path, company, stock, total_price, current_price, perf_d, perf_p):
         item = QListWidgetItem(self.ui.listWidgetStocks)
         item.setSizeHint(QSize(950, 50))  # שימוש ב-QSize
+
+        # שמירת הסימבול באייטם (נניח company הוא הסימבול, אם לא – שנה בהתאם)
+        item.setData(Qt.UserRole, company)
 
         widget = QFrame()
         layout = QHBoxLayout(widget)

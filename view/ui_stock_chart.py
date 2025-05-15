@@ -22,8 +22,8 @@ class Ui_StockChart(object):
     def setupUi(self, StockChart):
         if not StockChart.objectName():
             StockChart.setObjectName(u"StockChart")
-        StockChart.resize(600, 200)
-        StockChart.setMinimumSize(QSize(600, 200))
+        StockChart.resize(1009, 400)
+        StockChart.setMinimumSize(QSize(600, 300))
         self.mainLayout = QVBoxLayout(StockChart)
         self.mainLayout.setObjectName(u"mainLayout")
         self.widgetRangeSelector = QWidget(StockChart)
@@ -36,7 +36,7 @@ class Ui_StockChart(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaContent = QWidget()
         self.scrollAreaContent.setObjectName(u"scrollAreaContent")
-        self.scrollAreaContent.setGeometry(QRect(0, 0, 563, 200))
+        self.scrollAreaContent.setGeometry(QRect(0, 0, 989, 364))
         self.scrollLayout = QVBoxLayout(self.scrollAreaContent)
         self.scrollLayout.setObjectName(u"scrollLayout")
         self.frameChart = QFrame(self.scrollAreaContent)

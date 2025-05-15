@@ -21,7 +21,7 @@ class StockInfoView(QWidget):
         self.presenter = presenter
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.ui.headerLayout.setDirection(QBoxLayout.RightToLeft)
+        #self.ui.headerLayout.setDirection(QBoxLayout.RightToLeft)
         self.ui.frameChart.setMinimumHeight(300)
 
         # הוספת גרף עם גלילה אופקית
