@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QWidget # type: ignore
+from PySide6.QtCore import Signal # type: ignore
 from view.ui_ask_AI_chat import Ui_AskAIChat  # Import the generated UI class
 
 class AskAIChatView(QWidget):
@@ -28,14 +28,14 @@ class AskAIChatView(QWidget):
         if question:
             self.signal_question_submitted.emit(question)
 
-    def show_loading(self):
+    def display_loading(self):
         """Show the loading message."""
         self.ui.label_loading.setStyleSheet("color: #52b74d; font-size: 16px;")  # שינוי צבע וגודל הטקסט
         self.ui.label_loading.setVisible(True)  # הצגת הודעת ההמתנה
         self.ui.label_answer.setText("")  # ניקוי אזור התשובה
 
-    def show_answer(self, answer):
-        """Show the AI's answer."""
-        self.ui.label_loading.setVisible(False)  # הסתרת הודעת ההמתנה
-        self.ui.label_answer.setStyleSheet("padding: 10px; font-size: 14px;")  # הוספת רווח פנימי וגודל פונט
-        self.ui.label_answer.setText(answer)  # הצגת התשובה
+    def display_response(self, answer):
+        """Affiche la réponse de l'IA dans l'interface."""
+        self.ui.label_loading.setVisible(False)
+        self.ui.label_answer.setStyleSheet("padding: 10px; font-size: 14px;")
+        self.ui.label_answer.setText(answer)

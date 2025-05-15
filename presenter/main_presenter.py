@@ -3,6 +3,7 @@ from view.portfolio_view import PortfolioView
 from view.history_view import HistoryView
 from view.new_action_view import NewActionView
 from view.ask_AI_chat_view import AskAIChatView
+from model.ask_AI_chat_model import AIModel
 from model.portfolio_model import PortfolioModel
 from model.transactions_model import TransactionModel
 from threading import Timer
@@ -13,6 +14,7 @@ class MainPresenter:
         self.main_window_view = MainWindowView()
         self.new_action_view = NewActionView()
         self.ask_ai_chat_view = AskAIChatView()
+        self.ask_ai_chat_model = AIModel()
 
         # חיבור סיגנלים
         self.main_window_view.signal_new_action_clicked.connect(self.show_new_action)
@@ -22,7 +24,7 @@ class MainPresenter:
         self.current_view = None
         self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
-        self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
+        self.ask_ai_chat_view.signal_question_submitted.connect(self.on_question_submitted)
         # חיבור כפתור home
         self.main_window_view.ui.pushButton_hom.clicked.connect(self.load_portfolio)
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,26 +111,6 @@ class MainPresenter:
         """טיפול בלחיצה על כפתור Clear."""
         print("Clear button clicked")
 
-    def _on_question_submitted(self, question):
-        """טיפול בשאלה שנשלחה."""
-        print(f"[DEBUG] שאלה שנשלחה: {question}")
-        self.ask_ai_chat_view.show_loading()
-        self._simulate_long_answer()
-
-    def _simulate_long_answer(self):
-        """סימולציה של תגובה ארוכה."""
-        predefined_answer = (
-            "This is a long response from the AI. It is designed to test the scrolling "
-            "functionality and ensure that the UI behaves correctly when displaying a "
-            "large amount of text. The answer continues with more details, explanations, "
-            "and examples to simulate a realistic response. This is only a test, so the "
-            "content is static and does not come from an actual server. Thank you for "
-            "testing the Ask AI Chat feature!"
-        )
-
-        # הצגת התשובה לאחר 5 שניות (במקום 20 שניות)
-        Timer(10.0, lambda: self.ask_ai_chat_view.show_answer(predefined_answer)).start()
-
     def clear_layout(self, layout):
         """ניקוי תוכן הלייאאוט."""
         if layout is not None:
@@ -170,3 +152,11 @@ class MainPresenter:
 
     def on_filter_changed(self):
         self.display_filtered_history(self.user_id)
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    def on_question_submitted(self, question: str):
+        self.ask_ai_chat_view.display_loading()
+        Timer(0.001, lambda: self.ask_ai_chat_view.display_response(self.ask_ai_chat_model.ask_ai_question(question))).start()
+        #answer = self.ask_ai_chat_model.ask_ai_question(question)
+        #self.ask_ai_chat_view.display_response(answer)
+
