@@ -1,5 +1,3 @@
-# 📄 presenter/main_presenter.py
-
 from view.main_window_view import MainWindowView
 from view.portfolio_view import PortfolioView
 from view.history_view import HistoryView
@@ -48,15 +46,15 @@ class MainPresenter:
 
     def show_ask_ai_chat(self):
         """הצגת פריים Ask AI Chat."""
-        layout = self.window.ui.frame_content.layout()
+        layout = self.main_window_view.ui.frame_content.layout()
         self.clear_layout(layout)
         layout.addWidget(self.ask_ai_chat_view)
 
     def load_portfolio(self):
-        self.clear_layout(self.window.ui.frame_content.layout())
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
 
         portfolio_view = PortfolioView()
-        self.window.ui.frame_content.layout().addWidget(portfolio_view)
+        self.main_window_view.ui.frame_content.layout().addWidget(portfolio_view)
         self.current_view = portfolio_view
 
         data = self.model.get_user_portfolio("ben")

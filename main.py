@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
 
-    presenter = StockPresenter(balance=BALANCE,user_id="ben")  
-    #presenter = MainPresenter(balance=BALANCE,user_id="ben") 
+    #presenter = StockPresenter(balance=BALANCE,user_id="ben")  
+    presenter = MainPresenter(balance=BALANCE,user_id="ben") 
 
     presenter.show_view()
 
