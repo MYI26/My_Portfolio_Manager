@@ -5,6 +5,7 @@ from view.portfolio_view import PortfolioView
 
 
 class MainWindowView(QFrame):  # שינוי הירושה ל-QFrame
+    signal_new_action_clicked = Signal()
     signal_ask_ai_chat_clicked = Signal()  # הגדרת הסיגנל
 
     def __init__(self):
@@ -26,8 +27,13 @@ class MainWindowView(QFrame):  # שינוי הירושה ל-QFrame
         self.portfolio_view = PortfolioView()
         self.ui.frame_content.layout().addWidget(self.portfolio_view)
 
-        # Connect the "Ask AI Chat" button to emit the signal
+        # חיבור הכפתורים לסיגנלים
+        self.ui.pushButton_action.clicked.connect(self._on_new_action_clicked)  # עדכון השם
         self.ui.pushButton_AiChat.clicked.connect(self._on_ask_ai_chat_clicked)
+
+    def _on_new_action_clicked(self):
+        """Emit the signal when the 'New Action' button is clicked."""
+        self.signal_new_action_clicked.emit()
 
     def _on_ask_ai_chat_clicked(self):
         """Emit the signal when the 'Ask AI Chat' button is clicked."""
