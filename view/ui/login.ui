@@ -105,7 +105,7 @@ border-radius: 10;
       <property name="bottomMargin">
        <number>20</number>
       </property>
-      <item alignment="Qt::AlignVCenter">
+      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QFrame" name="frame_2">
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
@@ -120,22 +120,6 @@ border-radius: 10;
          <property name="bottomMargin">
           <number>2</number>
          </property>
-         <item>
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
          <item>
           <widget class="QLineEdit" name="lineEdit">
            <property name="sizePolicy">
@@ -161,23 +145,25 @@ color: rgb(40, 75, 107);</string>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+          <widget class="QLabel" name="label_4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
+           <property name="minimumSize">
             <size>
-             <width>20</width>
-             <height>20</height>
+             <width>100</width>
+             <height>0</height>
             </size>
            </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">color: rgb(40, 75, 107);</string>
            </property>
@@ -189,7 +175,7 @@ color: rgb(40, 75, 107);</string>
         </layout>
        </widget>
       </item>
-      <item alignment="Qt::AlignTop">
+      <item alignment="Qt::AlignHCenter|Qt::AlignTop">
        <widget class="QFrame" name="frame_3">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -204,23 +190,7 @@ color: rgb(40, 75, 107);</string>
          <property name="bottomMargin">
           <number>2</number>
          </property>
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>36</width>
-             <height>16</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLineEdit" name="lineEdit_2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -245,23 +215,25 @@ color: rgb(40, 75, 107);</string>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+          <widget class="QLabel" name="label_5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
+           <property name="minimumSize">
             <size>
-             <width>30</width>
-             <height>20</height>
+             <width>100</width>
+             <height>0</height>
             </size>
            </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_5">
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">color: rgb(40, 75, 107);</string>
            </property>

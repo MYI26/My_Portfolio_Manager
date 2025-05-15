@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QSizePolicy, QVBoxLayout, QWidget)
-import resources_rc
+from resources import resources_rc
 
 class Ui_Frame_authentication(object):
     def setupUi(self, Frame_authentication):
