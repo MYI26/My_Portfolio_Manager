@@ -33,7 +33,7 @@ class StockPresenter:
       
         self.stock_buy_view.label_money_changed.connect(self.on_text_changed_frame_money_amount)
 
-    def update_stock_info(self, symbol="AAPL"):     
+    def update_stock_info(self, symbol):     
         stock_data = self.model.fetch_stock_data(symbol)
         if stock_data:
             self.view.update_stock_info(stock_data)

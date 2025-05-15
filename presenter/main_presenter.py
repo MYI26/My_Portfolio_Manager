@@ -15,6 +15,7 @@ class MainPresenter:
 
     def __init__(self, balance):
         self.balance = balance
+        
 
         self.authentication_presenter = AuthenticationPresenter()
 
@@ -40,7 +41,7 @@ class MainPresenter:
         self.portfolio_view.stock_selected.connect(self.on_stock_selected)
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
-        self.load_portfolio()  # רק אחרי שהגדרת את self.portfolio_view
+
 
         self.portfolio_view.stock_selected.connect(self.on_stock_selected)
         self.main_window_view.ui.pushButton_hom_2.clicked.connect(self.load_history)
