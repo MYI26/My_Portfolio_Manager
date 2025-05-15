@@ -51,8 +51,8 @@ class MainPresenter:
 
     def _on_authentication_success(self):
         """מעבר לפריים הראשי לאחר אישור האימות."""
-        self.authentication_presenter.authentication_view.close()
         self.show_main_window()
+        self.authentication_presenter.close_view()
 
     def show_main_window(self):
         """מציג את הפריים הראשי."""
