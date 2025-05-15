@@ -20,7 +20,7 @@
    <item>
     <widget class="QLabel" name="labelTitle">
      <property name="styleSheet">
-      <string notr="true">font-size: 24px; font-weight: bold; color: rgb(40, 75, 107);</string>
+      <string notr="true">font-size: 16px; font-weight: bold; color: rgb(40, 75, 107);</string>
      </property>
      <property name="text">
       <string>New Action</string>

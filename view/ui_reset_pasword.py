@@ -201,10 +201,10 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         Frame.setWindowTitle(QCoreApplication.translate("Frame", u"Frame", None))
         self.label_2.setText(QCoreApplication.translate("Frame", u"Welcome to your Stocks Portfolio!", None))
-        self.label.setText(QCoreApplication.translate("Frame", u"Reset your new acount...", None))
-        self.label_5.setText(QCoreApplication.translate("Frame", u"Email adress", None))
+        self.label.setText(QCoreApplication.translate("Frame", u"Reset your account...", None))
+        self.label_5.setText(QCoreApplication.translate("Frame", u"Email address", None))
         self.label_4.setText(QCoreApplication.translate("Frame", u"New password", None))
-        self.label_8.setText(QCoreApplication.translate("Frame", u"Confirm Password:", None))
+        self.label_8.setText(QCoreApplication.translate("Frame", u"Confirm password:", None))
         self.pushButton.setText(QCoreApplication.translate("Frame", u"Reset password", None))
     # retranslateUi
 

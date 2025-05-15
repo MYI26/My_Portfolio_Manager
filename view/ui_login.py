@@ -164,6 +164,7 @@ class Ui_Frame(object):
 
         self.frame_4 = QFrame(self.frame_user_info)
         self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setLayoutDirection(Qt.RightToLeft)
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame_4)
@@ -189,7 +190,7 @@ class Ui_Frame(object):
 
         self.frame = QFrame(self.frame_user_info)
         self.frame.setObjectName(u"frame")
-        self.frame.setLayoutDirection(Qt.LeftToRight)
+        self.frame.setLayoutDirection(Qt.RightToLeft)
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_5 = QHBoxLayout(self.frame)
@@ -226,13 +227,13 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         Frame.setWindowTitle(QCoreApplication.translate("Frame", u"Frame", None))
         self.label_8.setText(QCoreApplication.translate("Frame", u"Welcome to your Stocks Portfolio!", None))
-        self.label.setText(QCoreApplication.translate("Frame", u"Login your acount...", None))
-        self.label_4.setText(QCoreApplication.translate("Frame", u"Email adress", None))
+        self.label.setText(QCoreApplication.translate("Frame", u"Login your account...", None))
+        self.label_4.setText(QCoreApplication.translate("Frame", u"Email address", None))
         self.label_5.setText(QCoreApplication.translate("Frame", u"Password:", None))
         self.pushButton.setText(QCoreApplication.translate("Frame", u"Login", None))
         self.label_2.setText(QCoreApplication.translate("Frame", u"Click here to SginUp", None))
-        self.label_3.setText(QCoreApplication.translate("Frame", u"Do yo not have an acount? ", None))
+        self.label_3.setText(QCoreApplication.translate("Frame", u"Do yo not have an account? ", None))
         self.label_7.setText(QCoreApplication.translate("Frame", u"Click here to reset", None))
-        self.label_6.setText(QCoreApplication.translate("Frame", u"Forgot yor password? ", None))
+        self.label_6.setText(QCoreApplication.translate("Frame", u"Forgot your password? ", None))
     # retranslateUi
 

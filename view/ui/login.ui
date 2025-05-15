@@ -50,7 +50,7 @@
       <string notr="true">color: rgb(40, 75, 107)</string>
      </property>
      <property name="text">
-      <string>Login your acount...</string>
+      <string>Login your account...</string>
      </property>
     </widget>
    </item>
@@ -190,7 +190,7 @@ color: rgb(40, 75, 107);</string>
             <string notr="true">color: rgb(40, 75, 107);</string>
            </property>
            <property name="text">
-            <string>Email adress</string>
+            <string>Email address</string>
            </property>
           </widget>
          </item>
@@ -324,6 +324,9 @@ border-radius: 10;
       </item>
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QFrame" name="frame_4">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -358,7 +361,7 @@ border-radius: 10;
             <enum>Qt::LeftToRight</enum>
            </property>
            <property name="text">
-            <string>Do yo not have an acount? </string>
+            <string>Do yo not have an account? </string>
            </property>
           </widget>
          </item>
@@ -368,7 +371,7 @@ border-radius: 10;
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QFrame" name="frame">
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::RightToLeft</enum>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -401,7 +404,7 @@ border-radius: 10;
          <item>
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>Forgot yor password? </string>
+            <string>Forgot your password? </string>
            </property>
           </widget>
          </item>

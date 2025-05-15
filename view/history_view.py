@@ -14,15 +14,29 @@ class HistoryView(QFrame):
         self.ui = Ui_Frame_History()
         self.ui.setupUi(self)
 
-        # הגדרת כיוון ה-QListWidget לשמאל לימין
         self.ui.listWidgetOrders.setLayoutDirection(Qt.LeftToRight)
-
-        # # דוגמה סטטית: יצירת שלושה אייטמים
-        # self.add_history_item("resources/logos/apple.png", "Apple Inc.", "2025-05-12", "Buy", 150.0, 10, 1500.0)
-        # self.add_history_item("resources/logos/tesla.png", "Tesla", "2025-05-11", "Sell", 200.0, 5, 1000.0)
-        # self.add_history_item("resources/logos/nvidia.png", "NVIDIA", "2025-05-10", "Buy", 300.0, 3, 900.0)
-        # self.add_history_item("resources/logos/google.png", "Google", "2025-05-09", "Sell", 250.0, 4, 1000.0)
-        # self.add_history_item("resources/logos/microsoft.png", "Microsoft", "2025-05-08", "Buy", 400.0, 2, 800.0)
+        self.ui.listWidgetOrders.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.listWidgetOrders.setStyleSheet("""
+            QListWidget {
+                border: 1px solid rgb(40, 75, 107);
+                border-radius: 5px;
+                background-color: white;
+            }
+            QScrollBar:vertical {
+                width: 12px;
+                border-radius: 100px;
+                background-color: white;
+                border: 2px solid rgb(240, 240, 240);
+                left: 0px;
+            }
+            QScrollBar::handle:vertical {
+                background-color: rgb(40, 75, 107);
+                border-radius: 15px;
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                background: none;
+            }
+        """)
 
     def add_history_item(self, logo_path, company, date, order_type, stock_price, amount, total_price):
         item = QListWidgetItem(self.ui.listWidgetOrders)
@@ -44,7 +58,7 @@ class HistoryView(QFrame):
                 if not pixmap.isNull():
                     label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         except Exception as e:
-            print(f"❌ Erreur lors du chargement de l'image: {e}")
+            print(f"Error loading image: {e}")
         layout.addWidget(label_logo)
 
         # שם מסחרי

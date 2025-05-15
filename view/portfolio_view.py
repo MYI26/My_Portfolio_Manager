@@ -17,8 +17,30 @@ class PortfolioView(QFrame):
         self.ui.setupUi(self)
 
         self.ui.listWidgetStocks.setLayoutDirection(Qt.LeftToRight)
+        self.ui.listWidgetStocks.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.listWidgetStocks.setStyleSheet("""
+            QListWidget {
+                border: 1px solid rgb(40, 75, 107);
+                border-radius: 5px;
+                background-color: white;
+            }
+            QScrollBar:vertical {
+                width: 12px;
+                border-radius: 100px;
+                background-color: white;
+                border: 2px solid rgb(240, 240, 240);
+                left: 0px;
+            }
+            QScrollBar::handle:vertical {
+                background-color: rgb(40, 75, 107);
+                border-radius: 15px;
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                background: none;
+            }
+        """)
         self.ui.listWidgetStocks.itemClicked.connect(self._on_item_clicked)  # חיבור לאירוע לחיצה
-
+        
         # דוגמה סטטית: יצירת שלושה אייטמים
         self.add_stock_item("resources/logos/apple.png", "Apple Inc.", 15, 2200, 2400, 200, 9.1)
         self.add_stock_item("resources/logos/tesla.png", "Tesla", 8, 1600, 1700, 100, 6.25)
@@ -55,7 +77,7 @@ class PortfolioView(QFrame):
                 if not pixmap.isNull():
                     label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         except Exception as e:
-            print(f"❌ Erreur lors du chargement de l'image: {e}")
+            print(f"Error loading image: {e}")
         layout.addWidget(label_logo)
 
         # שם מסחרי
@@ -88,7 +110,7 @@ class PortfolioView(QFrame):
         widget.setLayout(layout)
         self.ui.listWidgetStocks.setItemWidget(item, widget)
 
-    def display_portfolio(self, portfolio_data: list,user_id: str):
+    def display_portfolio(self, portfolio_data: list, user_id: str):
         self.ui.listWidgetStocks.clear()
 
         for data in portfolio_data:
@@ -107,12 +129,7 @@ class PortfolioView(QFrame):
             self.add_stock_item(logo_path, company_name, quantity, total_price, current_price, perf_d, perf_p)
 
     def display_portfolio_totals(self, capital_total, valeur_totale, perf_d, perf_p, balance):
-        print("[INFO] TOTALS")
-        print(f"Capital investi total : {capital_total:.2f} $")
-        print(f"Valeur actuelle totale : {valeur_totale:.2f} $")
-        print(f"Performance totale : {perf_d:+.2f} $ ({perf_p:+.2f} %)")
-
-        #arrondir perf_p et perf_d à 2 décimales
+        #arrondir perf_p et perf_d à 2 décימales
         perf_d = round(perf_d, 2)
         perf_p = round(perf_p, 2)
         

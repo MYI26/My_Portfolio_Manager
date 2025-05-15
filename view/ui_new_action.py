@@ -32,7 +32,7 @@ class Ui_Frame_New_Action(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.labelTitle = QLabel(Frame_New_Action)
         self.labelTitle.setObjectName(u"labelTitle")
-        self.labelTitle.setStyleSheet(u"font-size: 24px; font-weight: bold; color: rgb(40, 75, 107);")
+        self.labelTitle.setStyleSheet(u"font-size: 16px; font-weight: bold; color: rgb(40, 75, 107);")
         self.labelTitle.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.labelTitle)

@@ -27,23 +27,24 @@ class MainPresenter:
         self.new_action_view = NewActionView()
         self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_model = AIModel()
+        self.current_view = None
 
-        # חיבור סיגנלים
+        
         self.main_window_view.signal_new_action_clicked.connect(self.show_new_action)
         self.main_window_view.signal_ask_ai_chat_clicked.connect(self.show_ask_ai_chat)
-
-        self.current_view = None
+        self.new_action_view.stock_selected.connect(self.on_stock_selected)
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self.on_question_submitted)
-        # חיבור כפתור home
         self.main_window_view.ui.pushButton_hom.clicked.connect(self.load_portfolio)
-        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        
+
         self.model = PortfolioModel()
         self.portfolio_view = PortfolioView()
-        self.portfolio_view.stock_selected.connect(self.on_stock_selected)
-        self.load_portfolio()  # רק אחרי שהגדרת את self.portfolio_view
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
+        self.load_portfolio()  # רק אחרי שהגדרת את self.portfolio_view
+
+        self.portfolio_view.stock_selected.connect(self.on_stock_selected)
         self.main_window_view.ui.pushButton_hom_2.clicked.connect(self.load_history)
         self.transaction_history_data = []
         self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici
@@ -185,7 +186,6 @@ class MainPresenter:
         # עדכן את המידע על המניה שנבחרה
         self.stock_presenter.update_stock_info(symbol)
 
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def on_question_submitted(self, question: str):
         self.ask_ai_chat_view.display_loading()
         Timer(0.001, lambda: self.ask_ai_chat_view.display_response(self.ask_ai_chat_model.ask_ai_question(question))).start()

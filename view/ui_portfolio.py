@@ -53,44 +53,49 @@ class Ui_Frame_Portfolio(object):
         self.frameHeaderRow.setLayoutDirection(Qt.LeftToRight)
         self.frameHeaderRow.setStyleSheet(u"#frameHeaderRow{	\n"
 "	\n"
-"	border-bottom: 2px solid #274b6f;\n"
-"	padding: 5px;\n"
+"	border: 1px solid #274b6f;\n"
+"	border-radius: 10;\n"
 "	color: rgb(40, 73, 107);\n"
 "}")
-        self.frameHeaderRow.setFrameShape(QFrame.Box)
-        self.headerLayout = QHBoxLayout(self.frameHeaderRow)
-        self.headerLayout.setObjectName(u"headerLayout")
-        self.headerLayout.setContentsMargins(40, -1, 20, -1)
+        self.frameHeaderRow.setFrameShape(QFrame.NoFrame)
+        self.horizontalLayout_9 = QHBoxLayout(self.frameHeaderRow)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(20, -1, -1, -1)
         self.labelCompany = QLabel(self.frameHeaderRow)
         self.labelCompany.setObjectName(u"labelCompany")
         self.labelCompany.setStyleSheet(u"color: rgb(40, 75, 107);")
 
-        self.headerLayout.addWidget(self.labelCompany)
+        self.horizontalLayout_9.addWidget(self.labelCompany)
 
         self.labelStocks = QLabel(self.frameHeaderRow)
         self.labelStocks.setObjectName(u"labelStocks")
 
-        self.headerLayout.addWidget(self.labelStocks)
+        self.horizontalLayout_9.addWidget(self.labelStocks)
+
+        self.label_14 = QLabel(self.frameHeaderRow)
+        self.label_14.setObjectName(u"label_14")
+
+        self.horizontalLayout_9.addWidget(self.label_14)
 
         self.labelTotalPrice = QLabel(self.frameHeaderRow)
         self.labelTotalPrice.setObjectName(u"labelTotalPrice")
 
-        self.headerLayout.addWidget(self.labelTotalPrice)
+        self.horizontalLayout_9.addWidget(self.labelTotalPrice)
 
         self.labelCurrentPrice = QLabel(self.frameHeaderRow)
         self.labelCurrentPrice.setObjectName(u"labelCurrentPrice")
 
-        self.headerLayout.addWidget(self.labelCurrentPrice)
+        self.horizontalLayout_9.addWidget(self.labelCurrentPrice)
 
         self.labelPerfDollar = QLabel(self.frameHeaderRow)
         self.labelPerfDollar.setObjectName(u"labelPerfDollar")
 
-        self.headerLayout.addWidget(self.labelPerfDollar)
+        self.horizontalLayout_9.addWidget(self.labelPerfDollar)
 
         self.labelPerfPercent = QLabel(self.frameHeaderRow)
         self.labelPerfPercent.setObjectName(u"labelPerfPercent")
 
-        self.headerLayout.addWidget(self.labelPerfPercent)
+        self.horizontalLayout_9.addWidget(self.labelPerfPercent)
 
 
         self.verticalLayout.addWidget(self.frameHeaderRow)
@@ -99,6 +104,7 @@ class Ui_Frame_Portfolio(object):
         self.listWidgetStocks.setObjectName(u"listWidgetStocks")
         self.listWidgetStocks.setLayoutDirection(Qt.LeftToRight)
         self.listWidgetStocks.setFrameShape(QFrame.NoFrame)
+        self.listWidgetStocks.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.listWidgetStocks.setSortingEnabled(False)
 
         self.verticalLayout.addWidget(self.listWidgetStocks)
@@ -129,7 +135,7 @@ class Ui_Frame_Portfolio(object):
         self.label_10 = QLabel(self.frame_9)
         self.label_10.setObjectName(u"label_10")
         font1 = QFont()
-        font1.setBold(True)
+        font1.setBold(False)
         self.label_10.setFont(font1)
         self.label_10.setStyleSheet(u"color: rgb(82, 183, 77);")
         self.label_10.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
@@ -281,6 +287,7 @@ class Ui_Frame_Portfolio(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_4)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(-1, 16, -1, -1)
         self.label = QLabel(self.frame_4)
         self.label.setObjectName(u"label")
         font2 = QFont()
@@ -291,7 +298,7 @@ class Ui_Frame_Portfolio(object):
         self.horizontalLayout_2.addWidget(self.label)
 
 
-        self.horizontalLayout.addWidget(self.frame_4)
+        self.horizontalLayout.addWidget(self.frame_4, 0, Qt.AlignTop)
 
 
         self.verticalLayout.addWidget(self.frameSummary)
@@ -309,14 +316,15 @@ class Ui_Frame_Portfolio(object):
         self.labelTitle.setText(QCoreApplication.translate("Frame_Portfolio", u"Portfolio Overview", None))
         self.labelCompany.setText(QCoreApplication.translate("Frame_Portfolio", u"COMPANY", None))
         self.labelStocks.setText(QCoreApplication.translate("Frame_Portfolio", u"STOCKS", None))
+        self.label_14.setText(QCoreApplication.translate("Frame_Portfolio", u"QUANTITY", None))
         self.labelTotalPrice.setText(QCoreApplication.translate("Frame_Portfolio", u"TOTAL PRICE", None))
         self.labelCurrentPrice.setText(QCoreApplication.translate("Frame_Portfolio", u"CURRENT PRICE", None))
         self.labelPerfDollar.setText(QCoreApplication.translate("Frame_Portfolio", u"PERFORMANCE $", None))
         self.labelPerfPercent.setText(QCoreApplication.translate("Frame_Portfolio", u"PERFORMANCE %", None))
         self.label_10.setText(QCoreApplication.translate("Frame_Portfolio", u"15 $", None))
-        self.label_11.setText(QCoreApplication.translate("Frame_Portfolio", u"Current Cash", None))
+        self.label_11.setText(QCoreApplication.translate("Frame_Portfolio", u"Balance1", None))
         self.label_12.setText(QCoreApplication.translate("Frame_Portfolio", u"12 $", None))
-        self.label_13.setText(QCoreApplication.translate("Frame_Portfolio", u"Portfolio Value", None))
+        self.label_13.setText(QCoreApplication.translate("Frame_Portfolio", u"Balance2", None))
         self.label_6.setText(QCoreApplication.translate("Frame_Portfolio", u"15 $", None))
         self.label_7.setText(QCoreApplication.translate("Frame_Portfolio", u"Performance $", None))
         self.label_8.setText(QCoreApplication.translate("Frame_Portfolio", u"12 $", None))

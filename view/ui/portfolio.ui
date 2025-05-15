@@ -60,19 +60,16 @@ color: rgb(40, 75, 107);</string>
      <property name="styleSheet">
       <string notr="true">#frameHeaderRow{	
 	
-	border-bottom: 2px solid #274b6f;
-	padding: 5px;
+	border: 1px solid #274b6f;
+	border-radius: 10;
 	color: rgb(40, 73, 107);
 }</string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::Box</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
-     <layout class="QHBoxLayout" name="headerLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
       <property name="leftMargin">
-       <number>40</number>
-      </property>
-      <property name="rightMargin">
        <number>20</number>
       </property>
       <item>
@@ -89,6 +86,13 @@ color: rgb(40, 75, 107);</string>
        <widget class="QLabel" name="labelStocks">
         <property name="text">
          <string>STOCKS</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>QUANTITY</string>
         </property>
        </widget>
       </item>
@@ -130,6 +134,9 @@ color: rgb(40, 75, 107);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="currentRow">
       <number>-1</number>
@@ -187,7 +194,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_10">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -224,7 +231,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_12">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -273,7 +280,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_6">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -310,7 +317,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_8">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -359,7 +366,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_2">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -396,7 +403,7 @@ color: rgb(40, 75, 107);</string>
              <widget class="QLabel" name="label_4">
               <property name="font">
                <font>
-                <bold>true</bold>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -423,7 +430,7 @@ color: rgb(40, 75, 107);</string>
         </layout>
        </widget>
       </item>
-      <item>
+      <item alignment="Qt::AlignTop">
        <widget class="QFrame" name="frame_4">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -432,6 +439,9 @@ color: rgb(40, 75, 107);</string>
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="topMargin">
+          <number>16</number>
+         </property>
          <item>
           <widget class="QLabel" name="label">
            <property name="font">

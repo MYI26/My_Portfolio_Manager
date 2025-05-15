@@ -191,6 +191,7 @@ class Ui_Frame(object):
 
         self.frame_4 = QFrame(self.frame_user_info)
         self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setLayoutDirection(Qt.RightToLeft)
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame_4)
@@ -225,12 +226,12 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         Frame.setWindowTitle(QCoreApplication.translate("Frame", u"Frame", None))
         self.label_6.setText(QCoreApplication.translate("Frame", u"Welcome to your Stocks Portfolio!", None))
-        self.label.setText(QCoreApplication.translate("Frame", u"Creat your new acount...", None))
+        self.label.setText(QCoreApplication.translate("Frame", u"Create your new account...", None))
         self.label_5.setText(QCoreApplication.translate("Frame", u"User name:", None))
-        self.label_4.setText(QCoreApplication.translate("Frame", u"Email adress", None))
-        self.label_8.setText(QCoreApplication.translate("Frame", u"New Password:", None))
-        self.pushButton.setText(QCoreApplication.translate("Frame", u"Creat acount", None))
+        self.label_4.setText(QCoreApplication.translate("Frame", u"Email address", None))
+        self.label_8.setText(QCoreApplication.translate("Frame", u"New password:", None))
+        self.pushButton.setText(QCoreApplication.translate("Frame", u"Create account", None))
         self.label_2.setText(QCoreApplication.translate("Frame", u"Click here to Login", None))
-        self.label_3.setText(QCoreApplication.translate("Frame", u"Do yo have allready  acount? ", None))
+        self.label_3.setText(QCoreApplication.translate("Frame", u"Do yo have already an  account? ", None))
     # retranslateUi
 

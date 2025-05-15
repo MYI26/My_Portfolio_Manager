@@ -50,7 +50,7 @@
       <string notr="true">color: rgb(40, 75, 107)</string>
      </property>
      <property name="text">
-      <string>Creat your new acount...</string>
+      <string>Create your new account...</string>
      </property>
     </widget>
    </item>
@@ -251,7 +251,7 @@ color: rgb(40, 75, 107);</string>
             <string notr="true">color: rgb(40, 75, 107);</string>
            </property>
            <property name="text">
-            <string>Email adress</string>
+            <string>Email address</string>
            </property>
           </widget>
          </item>
@@ -324,7 +324,7 @@ color: rgb(40, 75, 107);</string>
             <string notr="true">color: rgb(40, 75, 107);</string>
            </property>
            <property name="text">
-            <string>New Password:</string>
+            <string>New password:</string>
            </property>
           </widget>
          </item>
@@ -363,12 +363,15 @@ border-radius: 10;
 </string>
         </property>
         <property name="text">
-         <string>Creat acount</string>
+         <string>Create account</string>
         </property>
        </widget>
       </item>
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QFrame" name="frame_4">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -400,7 +403,7 @@ border-radius: 10;
          <item>
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Do yo have allready  acount? </string>
+            <string>Do yo have already an  account? </string>
            </property>
           </widget>
          </item>
