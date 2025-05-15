@@ -1,5 +1,3 @@
-# 📄 presenter/main_presenter.py
-
 from view.main_window_view import MainWindowView
 from view.portfolio_view import PortfolioView
 from view.history_view import HistoryView
@@ -22,7 +20,7 @@ class MainPresenter:
 
         self.user_id = user_id
         self.current_view = None
-
+        self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
         # חיבור כפתור home
