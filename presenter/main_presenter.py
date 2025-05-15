@@ -10,37 +10,48 @@ from model.transactions_model import TransactionModel
 from threading import Timer
 
 
-
 class MainPresenter:
     def __init__(self, balance, user_id):
-        self.window = MainWindowView()
+        self.main_window_view = MainWindowView()
+        self.new_action_view = NewActionView()
+        self.ask_ai_chat_view = AskAIChatView()
+
+        # חיבור סיגנלים
+        self.main_window_view.signal_new_action_clicked.connect(self.show_new_action)
+        self.main_window_view.signal_ask_ai_chat_clicked.connect(self.show_ask_ai_chat)
+
         self.user_id = user_id
         self.current_view = None
         self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
         # חיבור כפתור home
-        self.window.ui.pushButton_hom.clicked.connect(self.load_portfolio)
+        self.main_window_view.ui.pushButton_hom.clicked.connect(self.load_portfolio)
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.model = PortfolioModel()
         self.balance = balance
         self.load_portfolio()
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
-        self.window.ui.pushButton_hom_2.clicked.connect(self.load_history)
+        self.main_window_view.ui.pushButton_hom_2.clicked.connect(self.load_history)
         self.transaction_history_data = []
-        self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici   
+        self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici
 
+    def show_view(self):
+        self.main_window_view.show()
 
-   
+    def show_new_action(self):
+        """הצגת פריים New Action."""
+        layout = self.main_window_view.ui.frame_content.layout()
+        self.clear_layout(layout)
+        layout.addWidget(self.new_action_view)
 
     def show_ask_ai_chat(self):
         """הצגת פריים Ask AI Chat."""
         layout = self.window.ui.frame_content.layout()
-        if layout is not None:
-            # נקה את התוכן הקיים
-            while layout.count():
-                child = layout.takeAt(0)
+        self.clear_layout(layout)
+        layout.addWidget(self.ask_ai_chat_view)
+
     def load_portfolio(self):
         self.clear_layout(self.window.ui.frame_content.layout())
 
@@ -82,17 +93,9 @@ class MainPresenter:
         capital_total, valeur_actuelle_total, performance_total_d, performance_total_p, self.balance
         )
 
-    # def load_history(self):
-    #     # ניקוי ה-layout של frame_content
-    #     self.clear_layout(self.window.ui.frame_content.layout())
-
-    #     history = HistoryView()
-    #     self.window.ui.frame_content.layout().addWidget(history)
-    #     self.current_view = history
-
     def load_history(self):
-        self.clear_layout(self.window.ui.frame_content.layout())
-        self.window.ui.frame_content.layout().addWidget(self.history_view)
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
+        self.main_window_view.ui.frame_content.layout().addWidget(self.history_view)
         self.current_view = self.history_view
 
         self.history_view.on_filter_changed(self.on_filter_changed)
@@ -101,22 +104,6 @@ class MainPresenter:
         self.load_transaction_history(self.user_id)  # ⚠️ adapter le nom de l’utilisateur
 
     def load_transaction_history(self, user_id):
-        # operations = self.transaction_model.fetch_history(user_id)
-        # print("[DEBUG] Réponse brute reçue du serveur TRANSACTIONS:", operations) 
-        
-        # for op in operations:
-        #     symbol = op["stockName"]
-        #     company = symbol  # temporaire, en attendant mieux
-        #     date = op["date"].split("T")[0]
-        #     order_type = op["type"]
-        #     price = op["pricePerUnit"]
-        #     qty = op["quantity"]
-        #     total = price * qty
-
-        #     logo_path = f"resources/logos/apple.png"
-
-        #     # on passe les données à la vue
-        #     self.current_view.add_history_item(logo_path, company, date, order_type, price, qty, total)
         self.transaction_history_data = self.transaction_model.fetch_history(user_id)
         self.display_filtered_history(self.user_id)
 
@@ -152,9 +139,6 @@ class MainPresenter:
                 widget = item.widget()
                 if widget is not None:
                     widget.deleteLater()
-
-    def show_view(self):
-        self.window.show()
 
     def display_filtered_history(self, user_id):
         if not self.current_view:

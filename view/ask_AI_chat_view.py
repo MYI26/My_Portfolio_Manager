@@ -15,6 +15,8 @@ class AskAIChatView(QWidget):
         self.ui.button_clear.clicked.connect(self._on_clear_clicked)
         self.ui.button_send.clicked.connect(self._on_send_clicked)
 
+        self.ui.label_loading.setVisible(False)  # הצגת הודעת ההמתנה
+
     def _on_clear_clicked(self):
         """Clear the text input."""
         self.ui.text_input.clear()
