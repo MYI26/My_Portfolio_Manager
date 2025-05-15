@@ -16,7 +16,7 @@ class MainPresenter:
         self.window = MainWindowView()
         self.user_id = user_id
         self.current_view = None
-
+        self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self._on_question_submitted)
         # חיבור כפתור home
@@ -36,16 +36,16 @@ class MainPresenter:
 
     def show_ask_ai_chat(self):
         """הצגת פריים Ask AI Chat."""
-        layout = self.main_window_view.ui.frame_content.layout()
+        layout = self.window.ui.frame_content.layout()
         if layout is not None:
             # נקה את התוכן הקיים
             while layout.count():
                 child = layout.takeAt(0)
     def load_portfolio(self):
-        self.clear_layout(self.main_window_view.ui.frame_content.layout())
+        self.clear_layout(self.window.ui.frame_content.layout())
 
         portfolio_view = PortfolioView()
-        self.main_window_view.ui.frame_content.layout().addWidget(portfolio_view)
+        self.window.ui.frame_content.layout().addWidget(portfolio_view)
         self.current_view = portfolio_view
 
         data = self.model.get_user_portfolio("ben")
