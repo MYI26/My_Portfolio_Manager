@@ -1,4 +1,4 @@
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Signal # type: ignore
 from view.authentication_view import AuthenticationView
 
 class AuthenticationPresenter(QObject):

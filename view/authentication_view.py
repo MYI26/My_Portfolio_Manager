@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QWidget # type: ignore
+from PySide6.QtCore import Signal # type: ignore
 from view.ui_authentication import Ui_Frame_authentication
 from view.ui_login import Ui_Frame as Ui_Login
 from view.ui_sginup import Ui_Frame as Ui_SignUp
@@ -10,7 +10,6 @@ class AuthenticationView(QWidget):
     signal_login_clicked = Signal()
     signal_signup_clicked = Signal()
     signal_reset_password_clicked = Signal()
-    # סיגנל כללי שמופעל כאשר לוחצים על כפתור ירוק באחד הפריימים הפנימיים
     signal_authentication_success = Signal()
 
     def __init__(self):
