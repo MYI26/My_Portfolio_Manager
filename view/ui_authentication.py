@@ -112,41 +112,6 @@ class Ui_Frame_authentication(object):
         self.verticalLayout_2 = QVBoxLayout(self.frame_content)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(-1, 40, -1, -1)
-        self.label = QLabel(self.frame_content)
-        self.label.setObjectName(u"label")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy2)
-        font1 = QFont()
-        font1.setPointSize(16)
-        font1.setBold(True)
-        font1.setItalic(False)
-        font1.setUnderline(False)
-        font1.setStrikeOut(False)
-        font1.setKerning(True)
-        self.label.setFont(font1)
-        self.label.setStyleSheet(u"color: rgb(40, 75, 107);")
-
-        self.verticalLayout_2.addWidget(self.label, 0, Qt.AlignHCenter)
-
-        self.frame_content_authentication = QFrame(self.frame_content)
-        self.frame_content_authentication.setObjectName(u"frame_content_authentication")
-        self.frame_content_authentication.setFrameShape(QFrame.StyledPanel)
-        self.frame_content_authentication.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.frame_content_authentication)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.frame_2 = QFrame(self.frame_content_authentication)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
-
-        self.horizontalLayout_2.addWidget(self.frame_2)
-
-
-        self.verticalLayout_2.addWidget(self.frame_content_authentication)
-
 
         self.verticalLayout.addWidget(self.frame_content)
 
@@ -163,6 +128,5 @@ class Ui_Frame_authentication(object):
         self.label_2.setText(QCoreApplication.translate("Frame_authentication", u"SignUp", None))
         self.label_3.setText(QCoreApplication.translate("Frame_authentication", u"Reset password", None))
         self.label_4.setText(QCoreApplication.translate("Frame_authentication", u"Remove acount", None))
-        self.label.setText(QCoreApplication.translate("Frame_authentication", u"Welcome to yor Stocks Portfolio!", None))
     # retranslateUi
 

@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Qt
 from view.ui_authentication import Ui_Frame_authentication
 from view.ui_login import Ui_Frame as Ui_Login
 from view.ui_sginup import Ui_Frame as Ui_SignUp
@@ -30,6 +30,11 @@ class AuthenticationView(QWidget):
         self.login_ui.setupUi(self.login_view)
         self.signup_ui.setupUi(self.signup_view)
         self.reset_password_ui.setupUi(self.reset_password_view)
+
+        # הגדרת כיוון פריסה שמאל לימין לכל פריים פנימי
+        self.login_view.setLayoutDirection(Qt.LeftToRight)
+        self.signup_view.setLayoutDirection(Qt.LeftToRight)
+        self.reset_password_view.setLayoutDirection(Qt.LeftToRight)
 
         # חיבור התפריט העליון
         self.ui.label_login.mousePressEvent = self._on_login_clicked

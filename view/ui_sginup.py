@@ -23,16 +23,26 @@ class Ui_Frame(object):
     def setupUi(self, Frame):
         if not Frame.objectName():
             Frame.setObjectName(u"Frame")
-        Frame.resize(989, 438)
+        Frame.resize(1027, 494)
         Frame.setStyleSheet(u"background-color: rgb(248, 248, 248);")
         self.verticalLayout = QVBoxLayout(Frame)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(-1, 30, -1, 100)
-        self.label = QLabel(Frame)
-        self.label.setObjectName(u"label")
+        self.label_6 = QLabel(Frame)
+        self.label_6.setObjectName(u"label_6")
         font = QFont()
         font.setPointSize(14)
-        self.label.setFont(font)
+        font.setBold(True)
+        self.label_6.setFont(font)
+        self.label_6.setStyleSheet(u"color: rgb(40, 75, 107);")
+
+        self.verticalLayout.addWidget(self.label_6, 0, Qt.AlignHCenter)
+
+        self.label = QLabel(Frame)
+        self.label.setObjectName(u"label")
+        font1 = QFont()
+        font1.setPointSize(12)
+        self.label.setFont(font1)
         self.label.setStyleSheet(u"color: rgb(40, 75, 107)")
 
         self.verticalLayout.addWidget(self.label, 0, Qt.AlignHCenter|Qt.AlignVCenter)
@@ -50,6 +60,7 @@ class Ui_Frame(object):
         self.frame_user_info.setSizePolicy(sizePolicy)
         self.frame_user_info.setMinimumSize(QSize(600, 250))
         self.frame_user_info.setMaximumSize(QSize(600, 500))
+        self.frame_user_info.setLayoutDirection(Qt.LeftToRight)
         self.frame_user_info.setStyleSheet(u"#frame_user_info{	\n"
 "	\n"
 "	border: 1px solid rgb(40, 75, 107);\n"
@@ -65,6 +76,7 @@ class Ui_Frame(object):
         self.verticalLayout_2.setContentsMargins(30, 20, 30, 20)
         self.frame_3 = QFrame(self.frame_user_info)
         self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setLayoutDirection(Qt.RightToLeft)
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_3)
@@ -99,6 +111,7 @@ class Ui_Frame(object):
 
         self.frame_2 = QFrame(self.frame_user_info)
         self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setLayoutDirection(Qt.RightToLeft)
         self.frame_2.setFrameShape(QFrame.NoFrame)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
@@ -131,6 +144,7 @@ class Ui_Frame(object):
         self.frame_5 = QFrame(self.frame_user_info)
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setMinimumSize(QSize(0, 0))
+        self.frame_5.setLayoutDirection(Qt.RightToLeft)
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_5)
@@ -184,9 +198,9 @@ class Ui_Frame(object):
         self.horizontalLayout.setContentsMargins(-1, 0, -1, 0)
         self.label_2 = QLabel(self.frame_4)
         self.label_2.setObjectName(u"label_2")
-        font1 = QFont()
-        font1.setUnderline(True)
-        self.label_2.setFont(font1)
+        font2 = QFont()
+        font2.setUnderline(True)
+        self.label_2.setFont(font2)
         self.label_2.setStyleSheet(u"color: rgb(0, 0, 161);")
 
         self.horizontalLayout.addWidget(self.label_2)
@@ -210,6 +224,7 @@ class Ui_Frame(object):
 
     def retranslateUi(self, Frame):
         Frame.setWindowTitle(QCoreApplication.translate("Frame", u"Frame", None))
+        self.label_6.setText(QCoreApplication.translate("Frame", u"Welcome to your Stocks Portfolio!", None))
         self.label.setText(QCoreApplication.translate("Frame", u"Creat your new acount...", None))
         self.label_5.setText(QCoreApplication.translate("Frame", u"User name:", None))
         self.label_4.setText(QCoreApplication.translate("Frame", u"Email adress", None))
