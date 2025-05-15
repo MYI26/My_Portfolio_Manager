@@ -3,7 +3,7 @@ from view.authentication_view import AuthenticationView
 from model.authentification_model import AuthModel
 
 class AuthenticationPresenter(QObject):
-    signal_authentication_success = Signal()
+    signal_authentication_success = Signal(str)
 
     def __init__(self):
         super().__init__()
@@ -20,8 +20,8 @@ class AuthenticationPresenter(QObject):
     def close_view(self):
          self.view.close()
 
-    def _on_authentication_success(self):
-         self.signal_authentication_success.emit()
+    def _on_authentication_success(self, email):
+        self.signal_authentication_success.emit(email)
 
     def handle_signup(self, email, password):
         result = self.model.signup_user(email, password)
@@ -36,7 +36,7 @@ class AuthenticationPresenter(QObject):
         print(f"[Presenter] Résultat de la connexion : {result}")
         if "token" in result:
             self.view.show_message("Connexion réussie !")
-            self._on_authentication_success()
+            self._on_authentication_success(email)
         else:
             self.view.show_error(result.get("Erreur", "Erreur inconnue"))
 
