@@ -10,7 +10,6 @@ class AuthenticationView(QWidget):
     signal_login_clicked = Signal()
     signal_signup_clicked = Signal()
     signal_reset_password_clicked = Signal()
-    # סיגנל כללי שמופעל כאשר לוחצים על כפתור ירוק באחד הפריימים הפנימיים
     signal_authentication_success = Signal()
 
     def __init__(self):
