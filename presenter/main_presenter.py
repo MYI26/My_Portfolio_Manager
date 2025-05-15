@@ -7,10 +7,21 @@ from model.ask_AI_chat_model import AIModel
 from model.portfolio_model import PortfolioModel
 from model.transactions_model import TransactionModel
 from threading import Timer
+from presenter.authentication_presenter import AuthenticationPresenter
 
 
 class MainPresenter:
     def __init__(self, balance, user_id):
+        self.balance = balance
+        self.user_id = user_id
+
+        # יצירת AuthenticationPresenter
+        self.authentication_presenter = AuthenticationPresenter()
+
+        # חיבור סיגנל מה-AuthenticationPresenter
+        self.authentication_presenter.signal_authentication_success.connect(self._on_authentication_success)
+
+        # יצירת MainWindowView
         self.main_window_view = MainWindowView()
         self.new_action_view = NewActionView()
         self.ask_ai_chat_view = AskAIChatView()
@@ -20,16 +31,13 @@ class MainPresenter:
         self.main_window_view.signal_new_action_clicked.connect(self.show_new_action)
         self.main_window_view.signal_ask_ai_chat_clicked.connect(self.show_ask_ai_chat)
 
-        self.user_id = user_id
         self.current_view = None
-        self.ask_ai_chat_view = AskAIChatView()
         self.ask_ai_chat_view.signal_clear_clicked.connect(self._on_clear_clicked)
         self.ask_ai_chat_view.signal_question_submitted.connect(self.on_question_submitted)
         # חיבור כפתור home
         self.main_window_view.ui.pushButton_hom.clicked.connect(self.load_portfolio)
         """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.model = PortfolioModel()
-        self.balance = balance
         self.load_portfolio()
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
@@ -38,6 +46,16 @@ class MainPresenter:
         self.history_view.on_filter_changed(self.on_filter_changed)  # 🔁 Ajout ici
 
     def show_view(self):
+        """מציג את פריים האימות תחילה."""
+        self.authentication_presenter.show_view()
+
+    def _on_authentication_success(self):
+        """מעבר לפריים הראשי לאחר אישור האימות."""
+        self.authentication_presenter.authentication_view.close()
+        self.show_main_window()
+
+    def show_main_window(self):
+        """מציג את הפריים הראשי."""
         self.main_window_view.show()
 
     def show_new_action(self):

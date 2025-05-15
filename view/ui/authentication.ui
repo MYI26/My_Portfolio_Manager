@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Frame_main_window</class>
- <widget class="QFrame" name="Frame_main_window">
+ <class>Frame_authentication</class>
+ <widget class="QFrame" name="Frame_authentication">
   <property name="geometry">
    <rect>
     <x>0</x>
