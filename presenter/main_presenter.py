@@ -8,6 +8,7 @@ from model.portfolio_model import PortfolioModel
 from model.transactions_model import TransactionModel
 from threading import Timer
 from presenter.authentication_presenter import AuthenticationPresenter
+from presenter.stock_presenter import StockPresenter
 
 
 class MainPresenter:
@@ -36,9 +37,11 @@ class MainPresenter:
         self.ask_ai_chat_view.signal_question_submitted.connect(self.on_question_submitted)
         # חיבור כפתור home
         self.main_window_view.ui.pushButton_hom.clicked.connect(self.load_portfolio)
-        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+        """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
         self.model = PortfolioModel()
-        self.load_portfolio()
+        self.portfolio_view = PortfolioView()
+        self.portfolio_view.stock_selected.connect(self.on_stock_selected)
+        self.load_portfolio()  # רק אחרי שהגדרת את self.portfolio_view
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
         self.main_window_view.ui.pushButton_hom_2.clicked.connect(self.load_history)
@@ -72,10 +75,8 @@ class MainPresenter:
 
     def load_portfolio(self):
         self.clear_layout(self.main_window_view.ui.frame_content.layout())
-
-        portfolio_view = PortfolioView()
-        self.main_window_view.ui.frame_content.layout().addWidget(portfolio_view)
-        self.current_view = portfolio_view
+        self.main_window_view.ui.frame_content.layout().addWidget(self.portfolio_view)
+        self.current_view = self.portfolio_view
 
         data = self.model.get_user_portfolio("ben")
         invested = self.model.get_invested_capital("ben")
@@ -106,8 +107,8 @@ class MainPresenter:
         performance_total_d = valeur_actuelle_total - capital_total
         performance_total_p = (performance_total_d / capital_total * 100) if capital_total != 0 else 0    
         print("[DEBUG] Données envoyées à la vue :", detailed_data)
-        portfolio_view.display_portfolio(detailed_data, self.user_id)
-        portfolio_view.display_portfolio_totals(
+        self.portfolio_view.display_portfolio(detailed_data, self.user_id)
+        self.portfolio_view.display_portfolio_totals(
         capital_total, valeur_actuelle_total, performance_total_d, performance_total_p, self.balance
         )
 
@@ -170,6 +171,19 @@ class MainPresenter:
 
     def on_filter_changed(self):
         self.display_filtered_history(self.user_id)
+
+    def on_stock_selected(self, symbol):
+        """
+        נטען את StockPresenter עבור הסימבול שנבחר ונחליף את הפריים.
+        """
+        # צור StockPresenter חדש (או שמור אחד קיים אם תרצה)
+        self.stock_presenter = StockPresenter(balance=self.balance, user_id=self.user_id)
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
+        self.main_window_view.ui.frame_content.layout().addWidget(self.stock_presenter.view)
+        self.current_view = self.stock_presenter.view
+
+        # עדכן את המידע על המניה שנבחרה
+        self.stock_presenter.update_stock_info(symbol)
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     def on_question_submitted(self, question: str):

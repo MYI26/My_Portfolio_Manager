@@ -104,67 +104,15 @@ class StockPresenter:
         layout.addWidget(self.stock_sale_view)
         print("[StockPresenter] StockSaleView loaded")  # בדיקה
 
-    
-    # def on_text_changed_frame_money_amount(self, text):
-    #     """
-    #     מטפל בשינוי הטקסט ב-frame_money_amount.
-    #     """
-    #     print(f"[StockPresenter] Text received for frame_money_amount: {text}")  # בדיקה
-
-    #     # עדכון הלייבל ב-frame_money_amount
-    #     self.stock_buy_view.update_label_money(text)
-
-    # def on_text_changed_frame_5(self, text):
-    #     """
-    #     מטפל בשינוי הטקסט ב-frame_5.
-    #     """
-    #     print(f"[StockPresenter] Text received for frame_5: {text}")  # בדיקה
-
-    #     # עדכון הלייבל ב-frame_5
-    #     self.stock_buy_view.update_label_stock(text)
-
-    # def on_label_money_changed(self, text: str):
-    #     """
-    #     מטפל בשינוי הערך של label_money.
-    #     """
-    #     try:
-    #         investment = float(text)
-    #     except ValueError:
-    #         investment = 0
-
-    #     shares = self.model.calculate_label_stock_from_label_money(investment)
-    #     self.stock_buy_view.update_label_stock(f"{shares:.2f}")
-
-    # #def on_label_stock_changed(self, text: str):
-    #     """
-    #     מטפל בשינוי הערך של label_stock.
-    #     """
-    #     try:
-    #      #   shares = float(text)
-    #     #except ValueError:
-    #     #    shares = 0
-
-    #    # investment = self.model.calculate_label_money_from_label_stock(shares)
-    #  #   self.stock_buy_view.update_label_money(f"{investment:.2f}")
     def on_text_changed_frame_money_amount(self, text: str):
-        """
-        מטפל בשינוי הטקסט בתיבת הטקסט ב-frame_money_amount.
-        """
+   
         try:
             investment = float(text)
         except ValueError:
-            investment = 0.0
+         investment = 0.0
 
         # עדכון המודל
-        #♣self.model.set_investment_amount(investment)
-
-        # חישוב כמות המניות
-        #♣shares = self.model.calculate_shares()
-
-        # עדכון ה-View
-        # self.stock_buy_view.update_label_money(f"{investment:.2f}")
-        # self.stock_buy_view.update_label_stock(f"{shares:.2f}")
-
+        self.model.set_investment_amount(investment)
     def on_text_changed_frame_money_amount_sale(self, text: str):
         """
         מטפל בשינוי הטקסט בתיבת הטקסט ב-frame_money_amount.
