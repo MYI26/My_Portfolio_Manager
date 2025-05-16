@@ -24,6 +24,7 @@ class StockChartView(QWidget):
 
         # Range combo box
         self.combo_box = QComboBox()
+        self.combo_box.setLayoutDirection(Qt.leftToRight)
         self.combo_box.addItems(["Last Week", "Last Month", "Last 3 Months"])
         self.combo_box.currentIndexChanged.connect(self.on_range_changed)
         self.combo_box.setStyleSheet("""

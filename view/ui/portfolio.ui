@@ -211,7 +211,7 @@ color: rgb(40, 75, 107);</string>
             <item>
              <widget class="QLabel" name="label_11">
               <property name="text">
-               <string>Balance1</string>
+               <string>Current liquidity</string>
               </property>
              </widget>
             </item>
@@ -248,7 +248,7 @@ color: rgb(40, 75, 107);</string>
             <item>
              <widget class="QLabel" name="label_13">
               <property name="text">
-               <string>Balance2</string>
+               <string>Portfolio value</string>
               </property>
              </widget>
             </item>
