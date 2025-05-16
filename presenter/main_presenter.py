@@ -188,5 +188,5 @@ class MainPresenter:
         self.stock_presenter.on_balance_changed(self.balance).connect(self.update_balance)
 
     def update_balance(self, new_balance):
-        self.balance = new_balance
-        self.portfolio_view.set_balance_display(self.balance)   
+        MainPresenter.balance = new_balance
+        self.portfolio_view.set_balance_display(MainPresenter.balance)   

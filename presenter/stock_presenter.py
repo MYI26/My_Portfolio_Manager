@@ -1,14 +1,15 @@
-from PySide6.QtCore import QTimer, Signal  # type: ignore
+from PySide6.QtCore import QTimer, Signal,QObject  # type: ignore
 from model.stock_model import StockModel
 from view.stock_info_view import StockInfoView
 from presenter.stock_chart_presenter import StockChartPresenter
 from view.stock_buy_view import StockBuyView
 from view.stock_sale_view import StockSaleView
 
-class StockPresenter:
+class StockPresenter(QObject):
     on_balance_changed = Signal(float)
 
     def __init__(self, balance, user_id):
+        super().__init__()
         self.model = StockModel(balance)
         self.view = StockInfoView(self)
         self.user_id = user_id
