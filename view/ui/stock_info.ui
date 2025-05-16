@@ -42,7 +42,7 @@ border: none;
        <number>40</number>
       </property>
       <property name="rightMargin">
-       <number>300</number>
+       <number>40</number>
       </property>
       <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
        <widget class="QFrame" name="frameLogo">
@@ -58,6 +58,12 @@ border: none;
           <height>0</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>82</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>
@@ -70,6 +76,24 @@ border: none;
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="labelLogo">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>64</width>
+             <height>64</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>64</width>
+             <height>64</height>
+            </size>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -100,7 +124,7 @@ border: none;
         </property>
         <property name="maximumSize">
          <size>
-          <width>65</width>
+          <width>90</width>
           <height>16777215</height>
          </size>
         </property>
@@ -120,7 +144,7 @@ border: none;
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
-          <number>4</number>
+          <number>8</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -129,7 +153,7 @@ border: none;
           <number>0</number>
          </property>
          <property name="rightMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -139,7 +163,7 @@ border: none;
            <property name="font">
             <font>
              <family>Times New Roman</family>
-             <pointsize>13</pointsize>
+             <pointsize>16</pointsize>
              <kerning>true</kerning>
             </font>
            </property>
@@ -153,6 +177,11 @@ border: none;
          </item>
          <item>
           <widget class="QLabel" name="labelCompany">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -168,7 +197,7 @@ border: none;
        <widget class="QFrame" name="frame_2">
         <property name="minimumSize">
          <size>
-          <width>130</width>
+          <width>0</width>
           <height>0</height>
          </size>
         </property>
@@ -180,7 +209,7 @@ border: none;
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="spacing">
-          <number>4</number>
+          <number>8</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -189,7 +218,7 @@ border: none;
           <number>0</number>
          </property>
          <property name="rightMargin">
-          <number>9</number>
+          <number>70</number>
          </property>
          <property name="bottomMargin">
           <number>0</number>
@@ -198,7 +227,7 @@ border: none;
           <widget class="QLabel" name="labelCurntPriceValue">
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>15</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -214,7 +243,7 @@ border: none;
            <property name="font">
             <font>
              <family>Arial</family>
-             <pointsize>9</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -244,7 +273,7 @@ border: none;
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>100</width>
           <height>16777215</height>
          </size>
         </property>
@@ -272,6 +301,11 @@ border: none;
          </property>
          <item alignment="Qt::AlignLeft">
           <widget class="QLabel" name="labelOpen">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>Open Price: </string>
            </property>
@@ -281,7 +315,7 @@ border: none;
           <widget class="QLabel" name="openPriceValue">
            <property name="font">
             <font>
-             <pointsize>10</pointsize>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="text">
@@ -299,7 +333,7 @@ border: none;
        <widget class="QFrame" name="frame">
         <property name="minimumSize">
          <size>
-          <width>200</width>
+          <width>0</width>
           <height>0</height>
          </size>
         </property>
@@ -314,7 +348,7 @@ border: none;
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
-          <number>4</number>
+          <number>8</number>
          </property>
          <property name="leftMargin">
           <number>0</number>
@@ -327,6 +361,11 @@ border: none;
          </property>
          <item>
           <widget class="QLabel" name="labelClose">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -345,7 +384,7 @@ border: none;
           <widget class="QLabel" name="ClosePriceValue">
            <property name="font">
             <font>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="text">
@@ -375,7 +414,7 @@ border: none;
         </property>
         <layout class="QVBoxLayout" name="actionsLayout">
          <property name="leftMargin">
-          <number>0</number>
+          <number>270</number>
          </property>
          <property name="topMargin">
           <number>0</number>

@@ -451,13 +451,13 @@ class Ui_frame_root(object):
         self.label_10.setText(QCoreApplication.translate("frame_root", u"Balance:", None))
         self.label_7.setText("")
         self.label_money.setText(QCoreApplication.translate("frame_root", u"100$", None))
-        self.label.setText(QCoreApplication.translate("frame_root", u"mony amount", None))
+        self.label.setText(QCoreApplication.translate("frame_root", u"Money amount", None))
         self.label_stock.setText(QCoreApplication.translate("frame_root", u"1.5 stocks", None))
         self.label_6.setText(QCoreApplication.translate("frame_root", u"Stocks amount", None))
         self.label_total.setText(QCoreApplication.translate("frame_root", u"105.5$", None))
         self.label_3.setText(QCoreApplication.translate("frame_root", u"Total amount:", None))
-        self.label_8.setText(QCoreApplication.translate("frame_root", u"5.5$", None))
+        self.label_8.setText(QCoreApplication.translate("frame_root", u"0.0$", None))
         self.label_9.setText(QCoreApplication.translate("frame_root", u"Service price", None))
-        self.button_bay.setText(QCoreApplication.translate("frame_root", u"Bay Now", None))
+        self.button_bay.setText(QCoreApplication.translate("frame_root", u"Buy Now", None))
     # retranslateUi
 

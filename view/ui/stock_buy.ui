@@ -800,7 +800,7 @@ color: rgb(255, 255, 255);
 </string>
         </property>
         <property name="text">
-         <string>Bay Now</string>
+         <string>Buy Now</string>
         </property>
         <property name="autoRepeatDelay">
          <number>5</number>
