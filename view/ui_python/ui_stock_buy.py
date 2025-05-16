@@ -454,7 +454,7 @@ class Ui_frame_root(object):
         self.label.setText(QCoreApplication.translate("frame_root", u"Money amount", None))
         self.label_stock.setText(QCoreApplication.translate("frame_root", u"1.5 stocks", None))
         self.label_6.setText(QCoreApplication.translate("frame_root", u"Stocks amount", None))
-        self.label_total.setText(QCoreApplication.translate("frame_root", u"105.5$", None))
+        self.label_total.setText(QCoreApplication.translate("frame_root", u"100.5$", None))
         self.label_3.setText(QCoreApplication.translate("frame_root", u"Total amount:", None))
         self.label_8.setText(QCoreApplication.translate("frame_root", u"0.0$", None))
         self.label_9.setText(QCoreApplication.translate("frame_root", u"Service price", None))

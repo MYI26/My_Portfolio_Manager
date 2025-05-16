@@ -143,50 +143,7 @@ class Ui_Frame_main_window(object):
         self.frame_user.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame_user)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(20, 0, 0, 0)
-        self.frame_2 = QFrame(self.frame_user)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setMinimumSize(QSize(0, 0))
-        self.frame_2.setFont(font)
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame_2)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(-1, 0, -1, 0)
-        self.label_user_name = QLabel(self.frame_2)
-        self.label_user_name.setObjectName(u"label_user_name")
-        self.label_user_name.setFont(font)
-
-        self.verticalLayout_3.addWidget(self.label_user_name)
-
-        self.frame_balance = QFrame(self.frame_2)
-        self.frame_balance.setObjectName(u"frame_balance")
-        self.frame_balance.setMinimumSize(QSize(0, 0))
-        self.frame_balance.setFrameShape(QFrame.StyledPanel)
-        self.frame_balance.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.frame_balance)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, -1, 0)
-        self.label_balabce_val = QLabel(self.frame_balance)
-        self.label_balabce_val.setObjectName(u"label_balabce_val")
-        self.label_balabce_val.setFont(font)
-        self.label_balabce_val.setStyleSheet(u"color: rgb(82, 183, 77);")
-
-        self.horizontalLayout_2.addWidget(self.label_balabce_val)
-
-        self.label_balance_name = QLabel(self.frame_balance)
-        self.label_balance_name.setObjectName(u"label_balance_name")
-        self.label_balance_name.setMaximumSize(QSize(16777215, 16777215))
-        self.label_balance_name.setFont(font)
-
-        self.horizontalLayout_2.addWidget(self.label_balance_name)
-
-
-        self.verticalLayout_3.addWidget(self.frame_balance, 0, Qt.AlignLeft)
-
-
-        self.horizontalLayout_8.addWidget(self.frame_2, 0, Qt.AlignVCenter)
-
+        self.horizontalLayout_8.setContentsMargins(40, 0, 0, 0)
         self.frame = QFrame(self.frame_user)
         self.frame.setObjectName(u"frame")
         self.frame.setMaximumSize(QSize(160000, 1600000))
@@ -237,9 +194,6 @@ class Ui_Frame_main_window(object):
         self.pushButton_action.setText(QCoreApplication.translate("Frame_main_window", u"New action", None))
         self.pushButton_hom_2.setText(QCoreApplication.translate("Frame_main_window", u"History", None))
         self.pushButton_hom.setText(QCoreApplication.translate("Frame_main_window", u"Home", None))
-        self.label_user_name.setText(QCoreApplication.translate("Frame_main_window", u"Eli Dynovisz", None))
-        self.label_balabce_val.setText(QCoreApplication.translate("Frame_main_window", u"1000 $", None))
-        self.label_balance_name.setText(QCoreApplication.translate("Frame_main_window", u"Balance:", None))
         self.label_icon__user.setText("")
     # retranslateUi
 
