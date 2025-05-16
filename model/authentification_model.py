@@ -1,4 +1,4 @@
-import requests  # type: ignore
+import requests 
 
 AUTH_URL = "https://localhost:7229/api/Auth"  
 

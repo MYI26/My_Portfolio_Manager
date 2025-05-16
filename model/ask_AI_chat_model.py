@@ -1,4 +1,4 @@
-import requests  # type: ignore
+import requests 
 
 AI_URL = "https://localhost:7229/api/ai/ask"  # Gateway vers l’agent AI
 

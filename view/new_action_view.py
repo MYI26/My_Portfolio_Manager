@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout, QHBoxLayout, QWidget, QGridLayout # type: ignore
 from PySide6.QtGui import QPixmap, QFont, QCursor # type: ignore
 from PySide6.QtCore import Qt, Signal, QEvent # type: ignore
-from view.ui_new_action import Ui_Frame_New_Action
+from view.ui_python.ui_new_action import Ui_Frame_New_Action
 
 class NewActionView(QFrame):
     stock_selected = Signal(str)
@@ -147,5 +147,3 @@ class NewActionView(QFrame):
             self._unhighlight_widget(self.selected_widget)
         self.selected_widget = widget
         self._highlight_widget(widget)
-
-    #je veux une fonction pour lorsque je clique sur un des items

@@ -1,13 +1,13 @@
 from PySide6.QtWidgets import QFrame, QVBoxLayout
 from PySide6.QtCore import Qt, Signal
-from view.ui_main_window import Ui_Frame_main_window
+from view.ui_python.ui_main_window import Ui_Frame_main_window
 from view.portfolio_view import PortfolioView
 
 class MainWindowView(QFrame):
     signal_new_action_clicked = Signal()
     signal_ask_ai_chat_clicked = Signal()
     signal_home_clicked = Signal()
-    signal_history_clicked = Signal()  # הוספה
+    signal_history_clicked = Signal()
 
     def __init__(self):
         super().__init__()
@@ -20,22 +20,20 @@ class MainWindowView(QFrame):
         self.ui.frame_header.setLayoutDirection(Qt.RightToLeft)
         self.ui.frame_content.setLayoutDirection(Qt.RightToLeft)
 
-        
         self.ui.frame_content_layout = QVBoxLayout(self.ui.frame_content)
         self.ui.frame_content.setLayout(self.ui.frame_content_layout)
 
         self.portfolio_view = PortfolioView()
         self.ui.frame_content.layout().addWidget(self.portfolio_view)
 
-        
         self.menu_buttons = {
             "home": self.ui.pushButton_hom,
             "action": self.ui.pushButton_action,
             "ai": self.ui.pushButton_AiChat,
-            "history": self.ui.pushButton_hom_2,  # הוספה
+            "history": self.ui.pushButton_hom_2,
         }
 
-        # --- עיצוב בסיסי לכל הכפתורים ---
+        # Base style for menu buttons
         base_style = """
             QPushButton {
                 border: none;
@@ -54,13 +52,11 @@ class MainWindowView(QFrame):
         for btn in self.menu_buttons.values():
             btn.setStyleSheet(base_style)
 
-        # חיבור הכפתורים לסיגנלים
         self.ui.pushButton_action.clicked.connect(self._on_new_action_clicked)
         self.ui.pushButton_AiChat.clicked.connect(self._on_ask_ai_chat_clicked)
         self.ui.pushButton_hom.clicked.connect(self._on_home_clicked)
-        self.ui.pushButton_hom_2.clicked.connect(self._on_history_clicked)  # הוספה
+        self.ui.pushButton_hom_2.clicked.connect(self._on_history_clicked)
 
-        # ברירת מחדל - הבית דלוק
         self.set_active_menu_button("home")
 
     def set_active_menu_button(self, active):

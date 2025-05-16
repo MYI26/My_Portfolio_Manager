@@ -1,12 +1,11 @@
-from PySide6.QtWidgets import QFrame, QListWidgetItem # type: ignore
-from view.ui_history import Ui_Frame_History
-from PySide6.QtGui import QFont, QPixmap # type: ignore
-from PySide6.QtCore import Qt, QSize # type: ignore
-from PySide6.QtWidgets import QLabel, QHBoxLayout # type: ignore
+from PySide6.QtWidgets import QFrame, QListWidgetItem 
+from view.ui_python.ui_history import Ui_Frame_History
+from PySide6.QtGui import QFont, QPixmap 
+from PySide6.QtCore import Qt, QSize 
+from PySide6.QtWidgets import QLabel, QHBoxLayout 
 from urllib.request import urlopen, Request
 import ssl
-from PySide6.QtCore import QByteArray # type: ignore
-
+from PySide6.QtCore import QByteArray 
 
 class HistoryView(QFrame):
     def __init__(self):
@@ -57,8 +56,8 @@ class HistoryView(QFrame):
                 pixmap.loadFromData(QByteArray(data))
                 if not pixmap.isNull():
                     label_logo.setPixmap(pixmap.scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-        except Exception as e:
-            print(f"Error loading image: {e}")
+        except Exception:
+            pass
         layout.addWidget(label_logo)
 
         # שם מסחרי
