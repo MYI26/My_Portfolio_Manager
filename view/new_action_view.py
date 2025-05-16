@@ -148,4 +148,9 @@ class NewActionView(QFrame):
         self.selected_widget = widget
         self._highlight_widget(widget)
 
-    #je veux une fonction pour lorsque je clique sur un des items
+    def get_selected_stock(self):
+        if self.selected_widget:
+            return self.selected_widget.symbol
+        return None
+    
+    #

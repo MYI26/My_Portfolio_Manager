@@ -47,9 +47,6 @@ class StockInfoView(QWidget):
 
 
     def update_stock_info(self, stock_data):
-        """
-        מעדכן את התצוגה עם נתוני המניה שהתקבלו.
-        """
         self.ui.labelSymbol.setText(stock_data.get("ticker", "N/A"))
         self.ui.labelCompany.setText(stock_data.get("name", "Unknown"))
         self.ui.labelCurntPriceValue.setText(f"{stock_data.get('price', 'N/A')} USD")

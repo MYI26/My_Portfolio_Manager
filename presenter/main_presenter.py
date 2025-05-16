@@ -15,7 +15,6 @@ class MainPresenter:
 
     def __init__(self, balance):
         self.balance = balance
-        
 
         self.authentication_presenter = AuthenticationPresenter()
 
@@ -42,8 +41,6 @@ class MainPresenter:
         self.history_view = HistoryView()
         self.transaction_model = TransactionModel()
 
-
-        self.portfolio_view.stock_selected.connect(self.on_stock_selected)
         self.main_window_view.ui.pushButton_hom_2.clicked.connect(self.load_history)
         self.transaction_history_data = []
         self.history_view.on_filter_changed(self.on_filter_changed)  
@@ -167,15 +164,29 @@ class MainPresenter:
     def on_filter_changed(self):
         self.display_filtered_history(self.user_id)
 
-    def on_stock_selected(self, symbol):
-        self.stock_presenter = StockPresenter(balance=self.balance, user_id=self.user_id)
-        self.clear_layout(self.main_window_view.ui.frame_content.layout())
-        self.main_window_view.ui.frame_content.layout().addWidget(self.stock_presenter.view)
-        self.current_view = self.stock_presenter.view
+    # def on_stock_selected(self, symbol):
+    #     self.stock_presenter = StockPresenter(balance=self.balance, user_id=self.user_id)
+    #     self.clear_layout(self.main_window_view.ui.frame_content.layout())
+    #     self.main_window_view.ui.frame_content.layout().addWidget(self.stock_presenter.view)
+    #     self.current_view = self.stock_presenter.view
 
-        self.stock_presenter.update_stock_info(symbol)
+    #     self.stock_presenter.update_stock_info(symbol)
 
     def on_question_submitted(self, question: str):
         self.ask_ai_chat_view.display_loading()
         Timer(0.001, lambda: self.ask_ai_chat_view.display_response(self.ask_ai_chat_model.ask_ai_question(question))).start()
 
+    def on_stock_selected(self, symbol):
+        #je veux que lorsque l'utilisateur clique sur une action dans le portefeuille, il soit redirigé vers la page de l'action   
+        self.stock_presenter = StockPresenter(balance=self.balance, user_id=self.user_id) 
+        self.clear_layout(self.main_window_view.ui.frame_content.layout())
+        self.main_window_view.ui.frame_content.layout().addWidget(self.stock_presenter.view)
+        #self.current_view = self.stock_presenter.view
+
+        self.stock_presenter.update_stock_info(symbol)
+
+        self.stock_presenter.on_balance_changed(self.balance).connect(self.update_balance)
+
+    def update_balance(self, new_balance):
+        self.balance = new_balance
+        self.portfolio_view.set_balance_display(self.balance)   

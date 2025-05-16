@@ -1,4 +1,4 @@
-from PySide6.QtCore import QTimer # type: ignore
+from PySide6.QtCore import QTimer, Signal  # type: ignore
 from model.stock_model import StockModel
 from view.stock_info_view import StockInfoView
 from presenter.stock_chart_presenter import StockChartPresenter
@@ -6,6 +6,8 @@ from view.stock_buy_view import StockBuyView
 from view.stock_sale_view import StockSaleView
 
 class StockPresenter:
+    on_balance_changed = Signal(float)
+
     def __init__(self, balance, user_id):
         self.model = StockModel(balance)
         self.view = StockInfoView(self)
@@ -23,7 +25,7 @@ class StockPresenter:
         self.timer.timeout.connect(self.update_stock_info)
         self.timer.start(60000)  
 
-        self.update_stock_info()
+        self.update_stock_info(symbol="AAPL")  # Example symbol, replace with actual symbol
 
         self.stock_buy_view.text_changed_frame_money_amount.connect(self.on_text_changed_frame_money_amount)
 
@@ -111,6 +113,8 @@ class StockPresenter:
         balance = self.model.get_balance()
         self.stock_buy_view.set_balance_display(balance)
         self.stock_sale_view.set_balance_display(balance)
+        #envoie un signal au main_window_presenter pour mettre à jour le label de l'argent
+        self.on_balance_changed.emit(balance)
 
     def handle_buy(self,quantity: float):
         stock_price = self.view.get_current_stock_price()

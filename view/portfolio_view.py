@@ -147,3 +147,6 @@ class PortfolioView(QFrame):
         self.ui.label_6.setStyleSheet(f"color: {color}")
         self.ui.label_8.setStyleSheet(f"color: {color}")
 
+    def set_balance_display(self, balance):
+        self.ui.label_10.setText(f"{balance:.2f} $")
+        self.ui.label_12.setText(f"{balance:.2f} $")
