@@ -53,3 +53,6 @@ class StockSaleView(QFrame):
 
     def show_error(self, text: str):
         QMessageBox.critical(self, "Erreur", text)
+
+    def update_label_total(self, text):
+        self.ui.label_total.setText(text)

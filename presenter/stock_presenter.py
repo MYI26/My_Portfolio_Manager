@@ -64,8 +64,8 @@ class StockPresenter(QObject):
     def on_sale_clicked(self):
         print("[StockPresenter] Sale button clicked")  
 
-        self.stock_buy_view.text_changed_frame_money_amount.connect(self.on_text_changed_frame_money_amount)
-        self.stock_buy_view.return_to_chart.connect(self.on_return_to_chart)
+        self.stock_sale_view.text_changed_frame_money_amount.connect(self.on_text_changed_frame_money_amount)
+        self.stock_sale_view.return_to_chart.connect(self.on_return_to_chart)
 
         layout = self.view.ui.frameChart.layout()
         for i in reversed(range(layout.count())):
@@ -83,14 +83,17 @@ class StockPresenter(QObject):
             investment = 0.0
 
         self.stock_buy_view.update_label_money(f"{investment:.2f}")
+        self.stock_sale_view.update_label_money(f"{investment:.2f}")
 
         stock_price = self.view.get_current_stock_price()
         shares = investment / stock_price if stock_price > 0 else 0.0
         self.stock_buy_view.update_label_stock(f"{shares:.2f}")
+        self.stock_sale_view.update_label_stock(f"{shares:.2f}")
 
         service_price = 0.0
         total = investment + service_price
         self.stock_buy_view.update_label_total(f"{total:.2f}$")
+        self.stock_sale_view.update_label_total(f"{total:.2f}$")
 
     def on_return_to_chart(self):
         print("[StockPresenter] Returning to chart view")  
