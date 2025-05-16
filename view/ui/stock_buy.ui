@@ -467,7 +467,7 @@ border-color: rgb(40, 75, 107);</string>
                   </font>
                  </property>
                  <property name="text">
-                  <string>mony amount</string>
+                  <string>Money amount</string>
                  </property>
                 </widget>
                </item>
@@ -716,7 +716,7 @@ color: rgb(255, 255, 255);</string>
                   </font>
                  </property>
                  <property name="text">
-                  <string>5.5$</string>
+                  <string>0.0$</string>
                  </property>
                 </widget>
                </item>
@@ -800,7 +800,7 @@ color: rgb(255, 255, 255);
 </string>
         </property>
         <property name="text">
-         <string>Bay Now</string>
+         <string>Buy Now</string>
         </property>
         <property name="autoRepeatDelay">
          <number>5</number>
