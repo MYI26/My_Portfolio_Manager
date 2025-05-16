@@ -147,3 +147,10 @@ class NewActionView(QFrame):
             self._unhighlight_widget(self.selected_widget)
         self.selected_widget = widget
         self._highlight_widget(widget)
+
+    def get_selected_stock(self):
+        if self.selected_widget:
+            return self.selected_widget.symbol
+        return None
+    
+    #
