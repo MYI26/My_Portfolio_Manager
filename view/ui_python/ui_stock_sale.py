@@ -3,19 +3,19 @@
 ################################################################################
 ## Form generated from reading UI file 'stock_sale.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.3
+## Created by: Qt User Interface Compiler version 6.5.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale, # type: ignore
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, # type: ignore
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCommandLinkButton, QFrame, QHBoxLayout,
+from PySide6.QtWidgets import (QApplication, QCommandLinkButton, QFrame, QHBoxLayout, # type: ignore
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QVBoxLayout, QWidget)
 
@@ -450,11 +450,11 @@ class Ui_frame_root(object):
         self.label_11.setText(QCoreApplication.translate("frame_root", u"1000$", None))
         self.label_10.setText(QCoreApplication.translate("frame_root", u"Balance:", None))
         self.label_7.setText("")
-        self.label_money.setText(QCoreApplication.translate("frame_root", u"100$", None))
+        self.label_money.setText(QCoreApplication.translate("frame_root", u"0$", None))
         self.label.setText(QCoreApplication.translate("frame_root", u"Money amount", None))
         self.label_stock.setText(QCoreApplication.translate("frame_root", u"1.5 stocks", None))
         self.label_6.setText(QCoreApplication.translate("frame_root", u"Stocks amount", None))
-        self.label_total.setText(QCoreApplication.translate("frame_root", u"100$", None))
+        self.label_total.setText(QCoreApplication.translate("frame_root", u"0$", None))
         self.label_3.setText(QCoreApplication.translate("frame_root", u"Total amount:", None))
         self.label_8.setText(QCoreApplication.translate("frame_root", u"0.0$", None))
         self.label_9.setText(QCoreApplication.translate("frame_root", u"Service price", None))

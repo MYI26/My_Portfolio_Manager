@@ -446,7 +446,7 @@ border-color: rgb(40, 75, 107);</string>
                   <number>0</number>
                  </property>
                  <property name="text">
-                  <string>100$</string>
+                  <string>0$</string>
                  </property>
                 </widget>
                </item>
@@ -662,7 +662,7 @@ color: rgb(255, 255, 255);</string>
                      </font>
                     </property>
                     <property name="text">
-                     <string>100$</string>
+                     <string>0$</string>
                     </property>
                    </widget>
                   </item>
